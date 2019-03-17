@@ -1,0 +1,29 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color:ghostwhite;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+.jumbotron {
+    background-image: url("https://cdn.vox-cdn.com/thumbor/qMug3aW33Sz7hrqEQ7jcDlIIy1A=/0x0:3872x2592/1200x800/filters:focal(1627x987:2245x1605)/cdn.vox-cdn.com/uploads/chorus_image/image/54614481/metro_apartments.0.jpg");
+    background-size: cover;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}

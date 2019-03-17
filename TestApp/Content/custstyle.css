@@ -1,0 +1,46 @@
+﻿.jumbotron-billboard .img {
+    margin-bottom: 0px;
+    opacity: 0.2;
+    color: #fff;
+    background: #000 url("https://images.adsttc.com/media/images/55e4/8d0a/e58e/ceb7/f100/00ee/large_jpg/3_PAR_SHELTER_VIEW_FROM_LACMA.jpg") top center no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.jumbotron h2 {
+    margin-top: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.jumbotron {
+    height: 400px;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.jumbotron .container {
+    position: relative;
+    z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+    .jumbotron {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+#searchblock {
+    margin-bottom:20px;
+}
+h3.tabletitle {
+    font-family: 'Quicksand', 'Hapna Slab Serif';
+    margin-bottom: 20px;
+}

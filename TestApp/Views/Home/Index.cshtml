@@ -1,0 +1,130 @@
+﻿@model TestApp.Models.ModelTotal
+@{
+    ViewBag.Title = "Home Page";
+}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="Stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" />
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+<link href="~/Content/custstyle.css" rel="stylesheet" />
+<div class="jumbotron jumbotron-billboard">
+    <div class="img"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>HCID Lookup Tool</h2>
+                <p>
+                    Yes, it's a lookup tool!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <br />
+        <div id="searchblock">
+            <form action="/" class="searchform" method="get">
+                <label>Street Number</label>
+                <input type="text" class="form-control" id="StreetNumber" name="StreetNumber">
+                <label>Street Name</label>
+                <input type="text" class="form-control" id="StreetName" name="StreetName">
+                <label>Street Direction</label>
+                @Html.DropDownList("StreetDirection", (IEnumerable<SelectListItem>)ViewBag.StreetDirection, new { @class = "form-control" })
+                <label>Street Suffix Name</label>
+                @Html.DropDownList("StreetSuffix", (IEnumerable<SelectListItem>)ViewBag.StreetSuffix, new { @class = "form-control" })
+
+                <label>City</label>
+                <input type="text" class="form-control" id="City" name="City">
+                <label>Zip Code</label>
+                <input type="text" class="form-control" id="Zip" name="Zip">
+                <label>APN</label>
+                <input type="text" class="form-control" id="APN" name="APN">
+                <br />
+                <label>Choose Database(s)</label> <br />
+                <input class="form-check-input" type="checkbox" name="bims2"> Bims2<br>
+                <input class="form-check-input" type="checkbox" name="rent2"> Rent2<br>
+                <input class="form-check-input" type="checkbox" name="hims2"> Hims2<br>
+                <input class="form-check-input" type="checkbox" name="prop_site_address2"> Prop Site Addresss<br>
+                <input type="submit" class="btn btn-search" value="Search">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Bims2List.Count > 0)
+        {
+        <div class="col-md-6">
+            <h3 class="tabletitle"> Bims Data</h3>
+            @foreach (var item in Model.Bims2List)
+            {
+                <p><b>APN: </b>@item.APN</p>
+                <p><b>Statement Number: </b>@item.StatementNum </p>
+                <p><b>Statement Date: </b>@item.StatementDate </p>
+                <p><b>Property Address: </b>@item.Property_Address </p>
+                <p><b>Property City, State, Zip: </b>@item.Property_City_State_Zip </p>
+                <p><b>RSO Exemptions: </b>@item.RSO_Exemptions</p>
+                <p><b>SCEP Exmpetions: </b>@item.SCEP_Exmpetions </p>
+                <p><b>IS RSO: </b>@item.IS_RSO </p>
+                <p><b>IS SCEP: </b>@item.IS_SCEP </p>
+                <p><b>RSO Invoice Num: </b>@item.RSO_Invoice_Num </p>
+                <p><b>SCEP Invoice_Num: </b>@item.SCEP_Invoice_Num </p>
+                <p><b>Total Units: </b>@item.Total_Units </p>
+                <p><b>RSO Units Billed: </b>@item.RSO_Units_Billed </p>
+            }
+        </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <h3> Bims Data</h3>
+                <p> No record found!</p>
+            </div>
+        }
+        @if (Model.Rent2List.Count > 0)
+        {
+            <div class="col-md-6">
+                <h3 class="tabletitle"> Rent Data</h3>
+                @foreach (var item in Model.Rent2List)
+                {
+                    <p><b>APN: </b>@item.APN</p>
+                    <p><b>Property Address: </b>@item.Property_Address </p>
+                    <p><b>Service Date: </b>@item.Service_Date</p>
+                    <p><b>Property Address: </b>@item.Property_Address </p>
+                    <p><b>Land_Use_Code: </b>@item.Land_Use_Code</p>
+                    <p><b>Unit Count: </b>@item.Unit_Count </p>
+                    <p><b>Exempted Units: </b>@item.Exempted_Units </p>
+                    <p><b>RSO Units: </b>@item.RSO_Units</p>
+                    <p><b>Year Built: </b>@item.Year_Built </p>
+                    <p><b>Category: </b>@item.Category</p>
+                    <p><b>Council District: </b>@item.Council_District </p>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <h3> Rent Data</h3>
+                <p> No record found!</p>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $('#StreetAddress').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '@Url.Action("AddressSearch", "Home")',
+                dataType: "json",
+                data: { search: $('#StreetAddress').val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Property_Address + ", " + item.Property_City_State_Zip, value: item.Property_Address };
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                }
+            });
+        }
+    });
+</script>

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hcid_lookupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'hcid_lookup.dbo.A' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="A">
+          <Property Name="a_name" Type="varchar" MaxLength="50" />
+          <Property Name="a_amount" Type="int" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hcid_lookup.dbo.addressmaster2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="addressmaster2">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="createdAt" />
+      <PropertyRef Name="updatedAt" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="street_num" Type="varchar(max)" />
+    <Property Name="street_name" Type="varchar(max)" />
+    <Property Name="street_type" Type="varchar(max)" />
+    <Property Name="street_dir_cd" Type="varchar(max)" />
+    <Property Name="street_unit" Type="varchar(max)" />
+    <Property Name="city" Type="varchar(max)" />
+    <Property Name="state" Type="varchar(max)" />
+    <Property Name="zipcode" Type="varchar(max)" />
+    <Property Name="is_active" Type="varchar(max)" />
+    <Property Name="createdAt" Type="datetime" Nullable="false" />
+    <Property Name="updatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'hcid_lookup.dbo.B' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="B">
+          <Property Name="b_name" Type="varchar" MaxLength="50" />
+          <Property Name="b_amount" Type="int" />
+        </EntityType>-->
+  <EntityType Name="bims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatementNum" Type="int" />
+    <Property Name="StatementDate" Type="varchar(max)" />
+    <Property Name="APN" Type="bigint" Nullable="false" />
+    <Property Name="Property_Address" Type="varchar(max)" />
+    <Property Name="Property_City_State_Zip" Type="varchar(max)" />
+    <Property Name="RSO_Exemptions" Type="int" />
+    <Property Name="SCEP_Exmpetions" Type="int" />
+    <Property Name="IS_RSO" Type="varchar(max)" />
+    <Property Name="IS_SCEP" Type="varchar(max)" />
+    <Property Name="RSO_Invoice_Num" Type="varchar(max)" />
+    <Property Name="SCEP_Invoice_Num" Type="varchar(max)" />
+    <Property Name="Total_Units" Type="int" />
+    <Property Name="RSO_Units_Billed" Type="int" />
+    <Property Name="SCEP_Units_Billed" Type="int" />
+    <Property Name="is_active" Type="varchar(max)" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hcid_lookup.dbo.hims2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="hims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HOUSING_PROGRAM" Type="varchar(max)" />
+    <Property Name="ProjUniqueID" Type="int" />
+    <Property Name="ProjectNo" Type="int" />
+    <Property Name="PROJECT_STATUS" Type="varchar(max)" />
+    <Property Name="PROJECT_INFO" Type="text" />
+    <Property Name="APN" Type="varchar(max)" />
+    <Property Name="HouseId" Type="int" />
+    <Property Name="HouseNum" Type="varchar(max)" />
+    <Property Name="HouseFracNum" Type="varchar(max)" />
+    <Property Name="PIN" Type="varchar(max)" />
+    <Property Name="CouncilDistrict" Type="int" />
+    <Property Name="PreDirCd" Type="varchar(max)" />
+    <Property Name="StreetName" Type="varchar(max)" />
+    <Property Name="StreetTypeCd" Type="varchar(max)" />
+    <Property Name="PostDirCd" Type="varchar(max)" />
+    <Property Name="UnitRange" Type="varchar(max)" />
+    <Property Name="Unit_Number" Type="varchar(max)" />
+    <Property Name="ZipCode" Type="int" />
+    <Property Name="City" Type="varchar(max)" />
+    <Property Name="LAHD_Count" Type="int" />
+    <Property Name="LUPAM_Count" Type="int" />
+    <Property Name="IsInFloodZone" Type="varchar(max)" />
+    <Property Name="CensusTract" Type="int" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <EntityType Name="prop_site_address2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apn" Type="bigint" Nullable="false" />
+    <Property Name="HouseID" Type="int" />
+    <Property Name="Pin" Type="varchar(max)" />
+    <Property Name="HouseNum" Type="int" />
+    <Property Name="HouseFracNum" Type="varchar(max)" />
+    <Property Name="PreDirCd" Type="varchar(max)" />
+    <Property Name="StreetName" Type="varchar(max)" />
+    <Property Name="StreetTypeCd" Type="varchar(max)" />
+    <Property Name="PostDirCd" Type="varchar(max)" />
+    <Property Name="UnitRange" Type="varchar(max)" />
+    <Property Name="City" Type="varchar(max)" />
+    <Property Name="Zip" Type="int" />
+    <Property Name="ZipSuffix" Type="smallint" />
+    <Property Name="XCoord" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YCoord" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Lon" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Lat" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Pind" Type="varchar(max)" />
+    <Property Name="EngDist" Type="varchar(max)" />
+    <Property Name="CouncilDistrict" Type="tinyint" />
+    <Property Name="LupLandUseCd" Type="varchar(max)" />
+    <Property Name="FlgHistMonument" Type="bit" />
+    <Property Name="LutCodeOfficeCd" Type="smallint" />
+    <Property Name="LutRentAreaCd" Type="smallint" />
+    <Property Name="LutHistPresZoneCd" Type="smallint" />
+    <Property Name="TbmPage" Type="int" />
+    <Property Name="TbmRow" Type="int" />
+    <Property Name="TbmCol" Type="varchar(max)" />
+    <Property Name="CenTract2010" Type="int" />
+    <Property Name="CenBlock2010GeoID" Type="varchar(max)" />
+    <Property Name="CenBlock2010" Type="varchar(max)" />
+    <Property Name="CenBlockGrp2010" Type="varchar(max)" />
+    <Property Name="CommunityName" Type="varchar(max)" />
+    <Property Name="FlgInsideCoi" Type="bit" />
+    <Property Name="CraRedevCd" Type="varchar(max)" />
+    <Property Name="StateAssemDist" Type="int" />
+    <Property Name="StateSenDist" Type="int" />
+    <Property Name="UsCongDist" Type="int" />
+    <Property Name="CountySupDistNum" Type="int" />
+    <Property Name="CommunityPlanAreaID" Type="int" />
+    <Property Name="NeighborhoodCouncilID" Type="int" />
+    <Property Name="FlgNsp1" Type="bit" />
+    <Property Name="FlgNsp2" Type="bit" />
+    <Property Name="FlgNsp3" Type="bit" />
+    <Property Name="HseAssignedCd" Type="varchar(max)" />
+    <Property Name="HseFlgDeleted" Type="bit" />
+    <Property Name="ApnFlgDeleted" Type="bit" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <EntityType Name="rent2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="APN" Type="bigint" Nullable="false" />
+    <Property Name="Property_Address" Type="text" />
+    <Property Name="Service_Date" Type="varchar(max)" />
+    <Property Name="Land_Use_Code" Type="varchar(max)" />
+    <Property Name="Unit_Count" Type="int" />
+    <Property Name="Exempted_Units" Type="int" />
+    <Property Name="RSO_Units" Type="int" />
+    <Property Name="Year_Built" Type="int" />
+    <Property Name="Category" Type="varchar(max)" />
+    <Property Name="Council_District" Type="int" />
+    <Property Name="Secondary_Address" Type="text" />
+    <Property Name="houseID" Type="int" />
+    <Property Name="FC_NOTES" Type="varchar(max)" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="hcid_lookupModelStoreContainer">
+    <EntitySet Name="bims2" EntityType="Self.bims2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prop_site_address2" EntityType="Self.prop_site_address2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rent2" EntityType="Self.rent2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="addressmaster2" EntityType="Self.addressmaster2" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [addressmaster2].[id] AS [id], 
+    [addressmaster2].[street_num] AS [street_num], 
+    [addressmaster2].[street_name] AS [street_name], 
+    [addressmaster2].[street_type] AS [street_type], 
+    [addressmaster2].[street_dir_cd] AS [street_dir_cd], 
+    [addressmaster2].[street_unit] AS [street_unit], 
+    [addressmaster2].[city] AS [city], 
+    [addressmaster2].[state] AS [state], 
+    [addressmaster2].[zipcode] AS [zipcode], 
+    [addressmaster2].[is_active] AS [is_active], 
+    [addressmaster2].[createdAt] AS [createdAt], 
+    [addressmaster2].[updatedAt] AS [updatedAt]
+    FROM [dbo].[addressmaster2] AS [addressmaster2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="hims2" EntityType="Self.hims2" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [hims2].[id] AS [id], 
+    [hims2].[HOUSING_PROGRAM] AS [HOUSING_PROGRAM], 
+    [hims2].[ProjUniqueID] AS [ProjUniqueID], 
+    [hims2].[ProjectNo] AS [ProjectNo], 
+    [hims2].[PROJECT_STATUS] AS [PROJECT_STATUS], 
+    [hims2].[PROJECT_INFO] AS [PROJECT_INFO], 
+    [hims2].[APN] AS [APN], 
+    [hims2].[HouseId] AS [HouseId], 
+    [hims2].[HouseNum] AS [HouseNum], 
+    [hims2].[HouseFracNum] AS [HouseFracNum], 
+    [hims2].[PIN] AS [PIN], 
+    [hims2].[CouncilDistrict] AS [CouncilDistrict], 
+    [hims2].[PreDirCd] AS [PreDirCd], 
+    [hims2].[StreetName] AS [StreetName], 
+    [hims2].[StreetTypeCd] AS [StreetTypeCd], 
+    [hims2].[PostDirCd] AS [PostDirCd], 
+    [hims2].[UnitRange] AS [UnitRange], 
+    [hims2].[Unit_Number] AS [Unit_Number], 
+    [hims2].[ZipCode] AS [ZipCode], 
+    [hims2].[City] AS [City], 
+    [hims2].[LAHD_Count] AS [LAHD_Count], 
+    [hims2].[LUPAM_Count] AS [LUPAM_Count], 
+    [hims2].[IsInFloodZone] AS [IsInFloodZone], 
+    [hims2].[CensusTract] AS [CensusTract], 
+    [hims2].[is_active] AS [is_active], 
+    [hims2].[AddressMasterId] AS [AddressMasterId]
+    FROM [dbo].[hims2] AS [hims2]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hcid_lookupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatementNum" Type="Int32" />
+    <Property Name="StatementDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="APN" Type="Int64" Nullable="false" />
+    <Property Name="Property_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Property_City_State_Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RSO_Exemptions" Type="Int32" />
+    <Property Name="SCEP_Exmpetions" Type="Int32" />
+    <Property Name="IS_RSO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IS_SCEP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RSO_Invoice_Num" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SCEP_Invoice_Num" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Total_Units" Type="Int32" />
+    <Property Name="RSO_Units_Billed" Type="Int32" />
+    <Property Name="SCEP_Units_Billed" Type="Int32" />
+    <Property Name="is_active" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="prop_site_address2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Apn" Type="Int64" Nullable="false" />
+    <Property Name="HouseID" Type="Int32" />
+    <Property Name="Pin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HouseNum" Type="Int32" />
+    <Property Name="HouseFracNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PreDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetTypeCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PostDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitRange" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="Int32" />
+    <Property Name="ZipSuffix" Type="Int16" />
+    <Property Name="XCoord" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="YCoord" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Lon" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Lat" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Pind" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EngDist" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CouncilDistrict" Type="Byte" />
+    <Property Name="LupLandUseCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FlgHistMonument" Type="Boolean" />
+    <Property Name="LutCodeOfficeCd" Type="Int16" />
+    <Property Name="LutRentAreaCd" Type="Int16" />
+    <Property Name="LutHistPresZoneCd" Type="Int16" />
+    <Property Name="TbmPage" Type="Int32" />
+    <Property Name="TbmRow" Type="Int32" />
+    <Property Name="TbmCol" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CenTract2010" Type="Int32" />
+    <Property Name="CenBlock2010GeoID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CenBlock2010" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CenBlockGrp2010" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CommunityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FlgInsideCoi" Type="Boolean" />
+    <Property Name="CraRedevCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StateAssemDist" Type="Int32" />
+    <Property Name="StateSenDist" Type="Int32" />
+    <Property Name="UsCongDist" Type="Int32" />
+    <Property Name="CountySupDistNum" Type="Int32" />
+    <Property Name="CommunityPlanAreaID" Type="Int32" />
+    <Property Name="NeighborhoodCouncilID" Type="Int32" />
+    <Property Name="FlgNsp1" Type="Boolean" />
+    <Property Name="FlgNsp2" Type="Boolean" />
+    <Property Name="FlgNsp3" Type="Boolean" />
+    <Property Name="HseAssignedCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HseFlgDeleted" Type="Boolean" />
+    <Property Name="ApnFlgDeleted" Type="Boolean" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="rent2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="APN" Type="Int64" Nullable="false" />
+    <Property Name="Property_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Service_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Land_Use_Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Count" Type="Int32" />
+    <Property Name="Exempted_Units" Type="Int32" />
+    <Property Name="RSO_Units" Type="Int32" />
+    <Property Name="Year_Built" Type="Int32" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Council_District" Type="Int32" />
+    <Property Name="Secondary_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="houseID" Type="Int32" />
+    <Property Name="FC_NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="addressmaster2">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="createdAt" />
+      <PropertyRef Name="updatedAt" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="street_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="street_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="street_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="street_dir_cd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="street_unit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedAt" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="hims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HOUSING_PROGRAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProjUniqueID" Type="Int32" />
+    <Property Name="ProjectNo" Type="Int32" />
+    <Property Name="PROJECT_STATUS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PROJECT_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="APN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HouseId" Type="Int32" />
+    <Property Name="HouseNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HouseFracNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CouncilDistrict" Type="Int32" />
+    <Property Name="PreDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetTypeCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PostDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitRange" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LAHD_Count" Type="Int32" />
+    <Property Name="LUPAM_Count" Type="Int32" />
+    <Property Name="IsInFloodZone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CensusTract" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="hcid_lookupEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bims2" EntityType="Self.bims2" />
+    <EntitySet Name="prop_site_address2" EntityType="Self.prop_site_address2" />
+    <EntitySet Name="rent2" EntityType="Self.rent2" />
+    <EntitySet Name="addressmaster2" EntityType="Self.addressmaster2" />
+    <EntitySet Name="hims2" EntityType="Self.hims2" />
+  </EntityContainer>
+</Schema>

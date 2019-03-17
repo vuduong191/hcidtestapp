@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hcid_lookupModelStoreContainer" CdmEntityContainer="hcid_lookupEntities">
+    <EntitySetMapping Name="bims2">
+      <EntityTypeMapping TypeName="hcid_lookupModel.bims2">
+        <MappingFragment StoreEntitySet="bims2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="StatementNum" ColumnName="StatementNum" />
+          <ScalarProperty Name="StatementDate" ColumnName="StatementDate" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="Property_Address" ColumnName="Property_Address" />
+          <ScalarProperty Name="Property_City_State_Zip" ColumnName="Property_City_State_Zip" />
+          <ScalarProperty Name="RSO_Exemptions" ColumnName="RSO_Exemptions" />
+          <ScalarProperty Name="SCEP_Exmpetions" ColumnName="SCEP_Exmpetions" />
+          <ScalarProperty Name="IS_RSO" ColumnName="IS_RSO" />
+          <ScalarProperty Name="IS_SCEP" ColumnName="IS_SCEP" />
+          <ScalarProperty Name="RSO_Invoice_Num" ColumnName="RSO_Invoice_Num" />
+          <ScalarProperty Name="SCEP_Invoice_Num" ColumnName="SCEP_Invoice_Num" />
+          <ScalarProperty Name="Total_Units" ColumnName="Total_Units" />
+          <ScalarProperty Name="RSO_Units_Billed" ColumnName="RSO_Units_Billed" />
+          <ScalarProperty Name="SCEP_Units_Billed" ColumnName="SCEP_Units_Billed" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prop_site_address2">
+      <EntityTypeMapping TypeName="hcid_lookupModel.prop_site_address2">
+        <MappingFragment StoreEntitySet="prop_site_address2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Apn" ColumnName="Apn" />
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="HouseNum" ColumnName="HouseNum" />
+          <ScalarProperty Name="HouseFracNum" ColumnName="HouseFracNum" />
+          <ScalarProperty Name="PreDirCd" ColumnName="PreDirCd" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="StreetTypeCd" ColumnName="StreetTypeCd" />
+          <ScalarProperty Name="PostDirCd" ColumnName="PostDirCd" />
+          <ScalarProperty Name="UnitRange" ColumnName="UnitRange" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="ZipSuffix" ColumnName="ZipSuffix" />
+          <ScalarProperty Name="XCoord" ColumnName="XCoord" />
+          <ScalarProperty Name="YCoord" ColumnName="YCoord" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Pind" ColumnName="Pind" />
+          <ScalarProperty Name="EngDist" ColumnName="EngDist" />
+          <ScalarProperty Name="CouncilDistrict" ColumnName="CouncilDistrict" />
+          <ScalarProperty Name="LupLandUseCd" ColumnName="LupLandUseCd" />
+          <ScalarProperty Name="FlgHistMonument" ColumnName="FlgHistMonument" />
+          <ScalarProperty Name="LutCodeOfficeCd" ColumnName="LutCodeOfficeCd" />
+          <ScalarProperty Name="LutRentAreaCd" ColumnName="LutRentAreaCd" />
+          <ScalarProperty Name="LutHistPresZoneCd" ColumnName="LutHistPresZoneCd" />
+          <ScalarProperty Name="TbmPage" ColumnName="TbmPage" />
+          <ScalarProperty Name="TbmRow" ColumnName="TbmRow" />
+          <ScalarProperty Name="TbmCol" ColumnName="TbmCol" />
+          <ScalarProperty Name="CenTract2010" ColumnName="CenTract2010" />
+          <ScalarProperty Name="CenBlock2010GeoID" ColumnName="CenBlock2010GeoID" />
+          <ScalarProperty Name="CenBlock2010" ColumnName="CenBlock2010" />
+          <ScalarProperty Name="CenBlockGrp2010" ColumnName="CenBlockGrp2010" />
+          <ScalarProperty Name="CommunityName" ColumnName="CommunityName" />
+          <ScalarProperty Name="FlgInsideCoi" ColumnName="FlgInsideCoi" />
+          <ScalarProperty Name="CraRedevCd" ColumnName="CraRedevCd" />
+          <ScalarProperty Name="StateAssemDist" ColumnName="StateAssemDist" />
+          <ScalarProperty Name="StateSenDist" ColumnName="StateSenDist" />
+          <ScalarProperty Name="UsCongDist" ColumnName="UsCongDist" />
+          <ScalarProperty Name="CountySupDistNum" ColumnName="CountySupDistNum" />
+          <ScalarProperty Name="CommunityPlanAreaID" ColumnName="CommunityPlanAreaID" />
+          <ScalarProperty Name="NeighborhoodCouncilID" ColumnName="NeighborhoodCouncilID" />
+          <ScalarProperty Name="FlgNsp1" ColumnName="FlgNsp1" />
+          <ScalarProperty Name="FlgNsp2" ColumnName="FlgNsp2" />
+          <ScalarProperty Name="FlgNsp3" ColumnName="FlgNsp3" />
+          <ScalarProperty Name="HseAssignedCd" ColumnName="HseAssignedCd" />
+          <ScalarProperty Name="HseFlgDeleted" ColumnName="HseFlgDeleted" />
+          <ScalarProperty Name="ApnFlgDeleted" ColumnName="ApnFlgDeleted" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rent2">
+      <EntityTypeMapping TypeName="hcid_lookupModel.rent2">
+        <MappingFragment StoreEntitySet="rent2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="Property_Address" ColumnName="Property_Address" />
+          <ScalarProperty Name="Service_Date" ColumnName="Service_Date" />
+          <ScalarProperty Name="Land_Use_Code" ColumnName="Land_Use_Code" />
+          <ScalarProperty Name="Unit_Count" ColumnName="Unit_Count" />
+          <ScalarProperty Name="Exempted_Units" ColumnName="Exempted_Units" />
+          <ScalarProperty Name="RSO_Units" ColumnName="RSO_Units" />
+          <ScalarProperty Name="Year_Built" ColumnName="Year_Built" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Council_District" ColumnName="Council_District" />
+          <ScalarProperty Name="Secondary_Address" ColumnName="Secondary_Address" />
+          <ScalarProperty Name="houseID" ColumnName="houseID" />
+          <ScalarProperty Name="FC_NOTES" ColumnName="FC_NOTES" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="addressmaster2">
+      <EntityTypeMapping TypeName="hcid_lookupModel.addressmaster2">
+        <MappingFragment StoreEntitySet="addressmaster2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="street_num" ColumnName="street_num" />
+          <ScalarProperty Name="street_name" ColumnName="street_name" />
+          <ScalarProperty Name="street_type" ColumnName="street_type" />
+          <ScalarProperty Name="street_dir_cd" ColumnName="street_dir_cd" />
+          <ScalarProperty Name="street_unit" ColumnName="street_unit" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hims2">
+      <EntityTypeMapping TypeName="hcid_lookupModel.hims2">
+        <MappingFragment StoreEntitySet="hims2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="HOUSING_PROGRAM" ColumnName="HOUSING_PROGRAM" />
+          <ScalarProperty Name="ProjUniqueID" ColumnName="ProjUniqueID" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="PROJECT_STATUS" ColumnName="PROJECT_STATUS" />
+          <ScalarProperty Name="PROJECT_INFO" ColumnName="PROJECT_INFO" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="HouseId" ColumnName="HouseId" />
+          <ScalarProperty Name="HouseNum" ColumnName="HouseNum" />
+          <ScalarProperty Name="HouseFracNum" ColumnName="HouseFracNum" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="CouncilDistrict" ColumnName="CouncilDistrict" />
+          <ScalarProperty Name="PreDirCd" ColumnName="PreDirCd" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="StreetTypeCd" ColumnName="StreetTypeCd" />
+          <ScalarProperty Name="PostDirCd" ColumnName="PostDirCd" />
+          <ScalarProperty Name="UnitRange" ColumnName="UnitRange" />
+          <ScalarProperty Name="Unit_Number" ColumnName="Unit_Number" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="LAHD_Count" ColumnName="LAHD_Count" />
+          <ScalarProperty Name="LUPAM_Count" ColumnName="LUPAM_Count" />
+          <ScalarProperty Name="IsInFloodZone" ColumnName="IsInFloodZone" />
+          <ScalarProperty Name="CensusTract" ColumnName="CensusTract" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
