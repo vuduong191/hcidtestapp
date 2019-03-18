@@ -82,22 +82,33 @@ namespace TestApp.Controllers
                             (bim.Property_City_State_Zip.Contains(City) || City == null) &&
                             (bim.Property_City_State_Zip.Contains(Zip) || Zip == null) &&
                             (APNString.Contains(APN) || APN == null)
-                        orderby(bim.id)
                         select bim).ToList().Count();
                 bimnp = Convert.ToInt32(Math.Ceiling((double)bimcount / pageSize));
                 bvm2 = (from bim in db.bims2
-                                let APNString = SqlFunctions.StringConvert((double)bim.APN)
-                                where (bim.Property_Address.Contains(abbv1) || bim.Property_Address.Contains(abbv2) || bim.Property_Address.Contains(abbv3) || bim.Property_Address.Contains(abbv4)) &&
-                                    (bim.Property_Address.Contains(StreetName) || StreetName == null) &&
-                                    (bim.Property_Address.Contains(StreetNumber) || StreetNumber == null) &&
-                                    (bim.Property_Address.Contains(StreetDirection) || StreetDirection == null) &&
-                                    (bim.Property_City_State_Zip.Contains(City) || City == null) &&
-                                    (bim.Property_City_State_Zip.Contains(Zip) || Zip == null) &&
-                                    (APNString.Contains(APN) || APN == null)
-                                select bim).Take(pageSize).ToList();
+                    let APNString = SqlFunctions.StringConvert((double)bim.APN)
+                    where (bim.Property_Address.Contains(abbv1) || bim.Property_Address.Contains(abbv2) || bim.Property_Address.Contains(abbv3) || bim.Property_Address.Contains(abbv4)) &&
+                        (bim.Property_Address.Contains(StreetName) || StreetName == null) &&
+                        (bim.Property_Address.Contains(StreetNumber) || StreetNumber == null) &&
+                        (bim.Property_Address.Contains(StreetDirection) || StreetDirection == null) &&
+                        (bim.Property_City_State_Zip.Contains(City) || City == null) &&
+                        (bim.Property_City_State_Zip.Contains(Zip) || Zip == null) &&
+                        (APNString.Contains(APN) || APN == null)
+                    orderby (bim.id)
+                    select bim).Take(pageSize).ToList();
             };
             if (hims2 != null)
             {
+                himcount = (from bim in db.hims2
+                        let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
+                        where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
+                            (bim.StreetName.Contains(StreetName) || StreetName == null) &&
+                            (bim.HouseNum.Contains(StreetNumber) || StreetNumber == null) &&
+                            (bim.PreDirCd.Contains(StreetDirection) || StreetDirection == null) &&
+                            (bim.City.Contains(City) || City == null || bim.City.Equals(null)) &&
+                            (ZipCodeString.Contains(Zip) || Zip == null) &&
+                            (bim.APN.Contains(APN) || APN == null)
+                        select bim).ToList().Count();
+                himnp = Convert.ToInt32(Math.Ceiling((double)himcount / pageSize));
                 hvm2 = (from bim in db.hims2
                         let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
                         where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
@@ -107,11 +118,12 @@ namespace TestApp.Controllers
                             (bim.City.Contains(City) || City == null || bim.City.Equals(null)) &&
                             (ZipCodeString.Contains(Zip) || Zip == null) &&
                             (bim.APN.Contains(APN) || APN == null)
+                        orderby (bim.id)
                         select bim).Take(pageSize).ToList();
             };
             if (rent2 != null)
             {
-                rvm2 = (from bim in db.rent2
+                rentcount = (from bim in db.rent2
                         let APNString = SqlFunctions.StringConvert((double)bim.APN)
                         where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
                             (bim.Secondary_Address.Contains(StreetName) || StreetName == null) &&
@@ -120,10 +132,35 @@ namespace TestApp.Controllers
                             (bim.Secondary_Address.Contains(City) || City == null) &&
                             (bim.Secondary_Address.Contains(Zip) || Zip == null) &&
                             (APNString.Contains(APN) || APN == null)
-                        select bim).Take(pageSize).ToList();
+                        select bim).ToList().Count();
+                rentnp = Convert.ToInt32(Math.Ceiling((double)rentcount / pageSize));
+                rvm2 = (from bim in db.rent2
+                    let APNString = SqlFunctions.StringConvert((double)bim.APN)
+                    where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
+                        (bim.Secondary_Address.Contains(StreetName) || StreetName == null) &&
+                        (bim.Secondary_Address.Contains(StreetNumber) || StreetNumber == null) &&
+                        (bim.Secondary_Address.Contains(StreetDirection) || StreetDirection == null) &&
+                        (bim.Secondary_Address.Contains(City) || City == null) &&
+                        (bim.Secondary_Address.Contains(Zip) || Zip == null) &&
+                        (APNString.Contains(APN) || APN == null)
+                    orderby (bim.id)
+                    select bim).Take(pageSize).ToList();
             };
             if (prop_site_address2 != null)
             {
+                propcount = (from bim in db.prop_site_address2
+                        let APNString = SqlFunctions.StringConvert((double)bim.Apn)
+                        let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
+                        let ZipCodeString = SqlFunctions.StringConvert((double)bim.Zip)
+                        where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
+                            (bim.StreetName.Contains(StreetName) || StreetName == null) &&
+                            (HouseNumString.Contains(StreetNumber) || StreetNumber == null) &&
+                            (bim.PreDirCd.Contains(StreetDirection) || StreetDirection == null) &&
+                            (bim.City.Contains(City) || City == null || bim.City.Equals(null)) &&
+                            (ZipCodeString.Contains(Zip) || Zip == null) &&
+                            (APNString.Contains(APN) || APN == null)
+                        select bim).ToList().Count();
+                propnp = Convert.ToInt32(Math.Ceiling((double)himcount / pageSize));
                 pvm2 = (from bim in db.prop_site_address2
                         let APNString = SqlFunctions.StringConvert((double)bim.Apn)
                         let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
@@ -135,13 +172,14 @@ namespace TestApp.Controllers
                             (bim.City.Contains(City) || City == null || bim.City.Equals(null)) &&
                             (ZipCodeString.Contains(Zip) || Zip == null) &&
                             (APNString.Contains(APN) || APN == null)
+                        orderby (bim.id)
                         select bim).Take(pageSize).ToList();
             }
             var data = new { SearchBim = bims2, SearchHim = hims2, SearchRent = rent2, SearchProp = prop_site_address2,
                             CountBim = bimcount, DataBim = bvm2, NoofPageBim = bimnp, CurrentPageBim = 1,
-                            CountHim = hvm2.Count(), DataHim = hvm2,
-                            CountRent = rvm2.Count(), DataRent = rvm2,
-                            CountPropSite = pvm2.Count(), DataPropSite = pvm2 };
+                            CountHim = himcount, DataHim = hvm2, NoofPageHim = himnp, CurrentPageHim = 1,
+                            CountRent = rentcount, DataRent = rvm2, NoofPageRent = rentnp, CurrentPageRent = 1,
+                            CountProp = propcount, DataProp = pvm2, NoofPageProp = propnp, CurrentPageProp = 1, };
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         //Get paged data from bim table
@@ -188,7 +226,153 @@ namespace TestApp.Controllers
             {
                 DataBim = bvm2,
                 CurrentPageBim = PageNum,
-                NumPage= NoofPage
+                NoofPageBim = NoofPage
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        //Get paged data from him table
+        public JsonResult GetHimSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        {
+            // prepare a list of variants of street type
+            Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
+            StSuffAbbv.Add(0, new List<string> { "", "", "", "" });
+            StSuffAbbv.Add(1, new List<string> { "st", "st", "st", "st" });
+            StSuffAbbv.Add(2, new List<string> { "av", "av", "av", "av" });
+            StSuffAbbv.Add(3, new List<string> { "blvd", "boul", "boul", "boul" });
+            StSuffAbbv.Add(4, new List<string> { "high", "hwy", "hiwy", "way" });
+            StSuffAbbv.Add(5, new List<string> { "dr", "dr", "dr", "dr" });
+            StSuffAbbv.Add(6, new List<string> { "pl", "pl", "pl", "pl" });
+            StSuffAbbv.Add(7, new List<string> { "lane", "ln", "ln", "ln" });
+            StSuffAbbv.Add(8, new List<string> { "route", "rte", "rte", "rte" });
+            StSuffAbbv.Add(9, new List<string> { "way", "wy", "wy", "wy" });
+            int SSInt = int.Parse(StreetSuffix);
+            string abbv1 = StSuffAbbv[SSInt][0];
+            string abbv2 = StSuffAbbv[SSInt][1];
+            string abbv3 = StSuffAbbv[SSInt][2];
+            string abbv4 = StSuffAbbv[SSInt][3];
+            //Number of records on a page;
+            int pageSize = 10;
+            int bimcount, himcount, rentcount, propcount;
+            bimcount = himcount = rentcount = propcount = 0;
+            //Number of pages
+            int bimnp, himnp, rentnp, propnp;
+            bimnp = himnp = rentnp = propnp = 1;
+
+            List<hims2> hvm2 = new List<hims2>();
+            hvm2 = (from bim in db.hims2
+                    let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
+                    where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
+                        (bim.StreetName.Contains(StreetName) || StreetName == null) &&
+                        (bim.HouseNum.Contains(StreetNumber) || StreetNumber == null) &&
+                        (bim.PreDirCd.Contains(StreetDirection) || StreetDirection == null) &&
+                        (bim.City.Contains(City) || City == null || bim.City.Equals(null)) &&
+                        (ZipCodeString.Contains(Zip) || Zip == null) &&
+                        (bim.APN.Contains(APN) || APN == null)
+                    orderby (bim.id)
+                    select bim).Skip((Convert.ToInt32(PageNum) - 1) * pageSize).Take(pageSize).ToList();
+            var data = new
+            {
+                DataHim = hvm2,
+                CurrentPageHim = PageNum,
+                NoofPageHim = NoofPage
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        //Get paged data from rent table
+        public JsonResult GetRentSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        {
+            // prepare a list of variants of street type
+            Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
+            StSuffAbbv.Add(0, new List<string> { "", "", "", "" });
+            StSuffAbbv.Add(1, new List<string> { "st", "st", "st", "st" });
+            StSuffAbbv.Add(2, new List<string> { "av", "av", "av", "av" });
+            StSuffAbbv.Add(3, new List<string> { "blvd", "boul", "boul", "boul" });
+            StSuffAbbv.Add(4, new List<string> { "high", "hwy", "hiwy", "way" });
+            StSuffAbbv.Add(5, new List<string> { "dr", "dr", "dr", "dr" });
+            StSuffAbbv.Add(6, new List<string> { "pl", "pl", "pl", "pl" });
+            StSuffAbbv.Add(7, new List<string> { "lane", "ln", "ln", "ln" });
+            StSuffAbbv.Add(8, new List<string> { "route", "rte", "rte", "rte" });
+            StSuffAbbv.Add(9, new List<string> { "way", "wy", "wy", "wy" });
+            int SSInt = int.Parse(StreetSuffix);
+            string abbv1 = StSuffAbbv[SSInt][0];
+            string abbv2 = StSuffAbbv[SSInt][1];
+            string abbv3 = StSuffAbbv[SSInt][2];
+            string abbv4 = StSuffAbbv[SSInt][3];
+            //Number of records on a page;
+            int pageSize = 10;
+            int bimcount, himcount, rentcount, propcount;
+            bimcount = himcount = rentcount = propcount = 0;
+            //Number of pages
+            int bimnp, himnp, rentnp, propnp;
+            bimnp = himnp = rentnp = propnp = 1;
+
+            List<rent2> rvm2 = new List<rent2>();
+            rvm2 = (from bim in db.rent2
+                    let APNString = SqlFunctions.StringConvert((double)bim.APN)
+                    where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
+                        (bim.Secondary_Address.Contains(StreetName) || StreetName == null) &&
+                        (bim.Secondary_Address.Contains(StreetNumber) || StreetNumber == null) &&
+                        (bim.Secondary_Address.Contains(StreetDirection) || StreetDirection == null) &&
+                        (bim.Secondary_Address.Contains(City) || City == null) &&
+                        (bim.Secondary_Address.Contains(Zip) || Zip == null) &&
+                        (APNString.Contains(APN) || APN == null)
+                    orderby (bim.id)
+                    select bim).Skip((Convert.ToInt32(PageNum) - 1) * pageSize).Take(pageSize).ToList();
+            var data = new
+            {
+                DataRent = rvm2,
+                CurrentPageRent = PageNum,
+                NoofPageRent = NoofPage
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        //Get paged data from Prop table
+        public JsonResult GetPropSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        {
+            // prepare a list of variants of street type
+            Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
+            StSuffAbbv.Add(0, new List<string> { "", "", "", "" });
+            StSuffAbbv.Add(1, new List<string> { "st", "st", "st", "st" });
+            StSuffAbbv.Add(2, new List<string> { "av", "av", "av", "av" });
+            StSuffAbbv.Add(3, new List<string> { "blvd", "boul", "boul", "boul" });
+            StSuffAbbv.Add(4, new List<string> { "high", "hwy", "hiwy", "way" });
+            StSuffAbbv.Add(5, new List<string> { "dr", "dr", "dr", "dr" });
+            StSuffAbbv.Add(6, new List<string> { "pl", "pl", "pl", "pl" });
+            StSuffAbbv.Add(7, new List<string> { "lane", "ln", "ln", "ln" });
+            StSuffAbbv.Add(8, new List<string> { "route", "rte", "rte", "rte" });
+            StSuffAbbv.Add(9, new List<string> { "way", "wy", "wy", "wy" });
+            int SSInt = int.Parse(StreetSuffix);
+            string abbv1 = StSuffAbbv[SSInt][0];
+            string abbv2 = StSuffAbbv[SSInt][1];
+            string abbv3 = StSuffAbbv[SSInt][2];
+            string abbv4 = StSuffAbbv[SSInt][3];
+            //Number of records on a page;
+            int pageSize = 10;
+            int bimcount, himcount, rentcount, propcount;
+            bimcount = himcount = rentcount = propcount = 0;
+            //Number of pages
+            int bimnp, himnp, rentnp, propnp;
+            bimnp = himnp = rentnp = propnp = 1;
+
+            List<prop_site_address2> pvm2 = new List<prop_site_address2>();
+            pvm2 = (from bim in db.prop_site_address2
+                    let APNString = SqlFunctions.StringConvert((double)bim.Apn)
+                    let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
+                    let ZipCodeString = SqlFunctions.StringConvert((double)bim.Zip)
+                    where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
+                        (bim.StreetName.Contains(StreetName) || StreetName == null) &&
+                        (HouseNumString.Contains(StreetNumber) || StreetNumber == null) &&
+                        (bim.PreDirCd.Contains(StreetDirection) || StreetDirection == null) &&
+                        (bim.City.Contains(City) || City == null || bim.City.Equals(null)) &&
+                        (ZipCodeString.Contains(Zip) || Zip == null) &&
+                        (APNString.Contains(APN) || APN == null)
+                    orderby (bim.id)
+                    select bim).Skip((Convert.ToInt32(PageNum) - 1) * pageSize).Take(pageSize).ToList();
+            var data = new
+            {
+                DataProp = pvm2,
+                CurrentPageProp = PageNum,
+                NoofPageProp = NoofPage
             };
             return Json(data, JsonRequestBehavior.AllowGet);
         }

@@ -48,12 +48,21 @@
                 <input type="submit" class="btn btn-search" id="SearchBtn" value="Search">
             </form>
         </div>
+        <div id='loader' style='display: none;'>
+            <img src='~/Content/images/loading.gif'>
+        </div>
     </div>
     <div class="row">
-        <div id= "bimTable">
-            
+        <div id="bimTable">
+
         </div>
         <div id="himTable">
+
+        </div>
+        <div id="rentTable">
+
+        </div>
+        <div id="propTable">
 
         </div>
     </div>
@@ -62,6 +71,8 @@
     $(document).ready(function () {
         var bimtable = $("#bimTable");
         var himtable = $("#himTable");
+        var renttable = $("#rentTable");
+        var proptable = $("#propTable");
         $("#SearchBtn").click(function (e) {
             e.preventDefault();
             var streetNumber = $("#StreetNumber").val().trim();
@@ -81,22 +92,25 @@
                 type: "GET",
                 url: "/Home/GetSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&bims2=" + bimscheckbox + "&rent2=" + rentcheckbox + "&hims2=" + himscheckbox + "&prop_site_address2=" + propcheckbox,
                 contentType: "html",
+                beforeSend: function () {
+                    // Show image container
+                    $("#loader").show();
+                },
                 success: function (result) {
-                    console.log(result);
-                    console.log(result.SearchBim);
-                    console.log(result.CountBim);
+                    // if the user searchs from bim
                     if (result.SearchBim != null) {
+                        // if records are found
                         if (result.CountBim != 0) {
                             let bimresult = result.DataBim;
                             let tableTitle = "<h2 class='tableTitle'> Bims2 Data</h2>";
-                            let bimthead = $("<table>", { "class": "table table-bordered" });
-                            bimthead.append("<thead> <tr>" +
+                            let bimthead = $("<table>", { "class": "table table-bordered table-hover" });
+                            bimthead.append("<thead class='thead-light'> <tr>" +
                                 "<th>APN</th>" +
                                 "<th>Statement Num</th>" +
                                 "<th>Statement Date</th>" +
                                 "<th>Prop Add</th>" +
                                 "<th>City, State, Zip</th>" +
-                                "<th>RSO Exem/th>" +
+                                "<th>RSO Exem</th>" +
                                 "<th>SCEP Exem</th>" +
                                 "<th>IS RSO</th>" +
                                 "<th>IS SCEP</th>" +
@@ -151,9 +165,200 @@
                             bimtable.append(tableCcontent);
                         }
                     }
-                }
+                    // if the user searchs from him
+                    if (result.SearchHim != null) {
+                        // if records are found
+                        if (result.CountHim != 0) {
+                            let himresult = result.DataHim;
+                            let himtableTitle = "<h2 class='tableTitle'> Hims2 Data</h2>";
+                            let himthead = $("<table>", { "class": "table table-bordered table-hover" });
+                            himthead.append("<thead class='thead-light'> <tr>" +
+                                "<th>HOUSING PROGRAM</th>" +
+                                "<th>Proj Unique ID</th>" +
+                                "<th>Project No</th>" +
+                                "<th>PROJECT STATUS</th>" +
+                                "<th>PROJECT INFO</th>" +
+                                "<th>APN</th>" +
+                                "<th>House Id</th>" +
+                                "<th>House Num</th>" +
+                                "<th>House FracNum</th>" +
+                                "<th>PIN</th>" +
+                                "<th>Council District</th>" +
+                                "</tr> </thead>");
+                            let himtbody = $("<tbody>", { id: "him-tbody" });
+                            $.each(himresult, function (index, value) {
+                                var himtbodydata = "<tr>" +
+                                    "<td>" + value.HOUSING_PROGRAM + "</td>" +
+                                    "<td>" + value.ProjUniqueID  + "</td>" +
+                                    "<td>" + value.ProjectNo  + "</td>" +
+                                    "<td>" + value.PROJECT_STATUS + "</td>" +
+                                    "<td>" + value.PROJECT_INFO + "</td>" +
+                                    "<td>" + value.APN + "</td>" +
+                                    "<td>" + value.HouseId + "</td>" +
+                                    "<td>" + value.HouseNum + "</td>" +
+                                    "<td>" + value.HouseFracNum + "</td>" +
+                                    "<td>" + value.PIN + "</td>" +
+                                    "<td>" + value.CouncilDistrict + "</td>" + "</tr>";
+                                himtbody.append(himtbodydata)
+                            })
+                            let himtfootcontent = "";
+                            for (let i = 1; i <= Math.min(result.NoofPageHim, 20); i++) {
+                                if (i == result.CurrentPageHim) {
+                                    himtfootcontent = himtfootcontent + i + "  ";
+                                } else {
+                                    himtfootcontent = himtfootcontent + "<a class='him-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+                            let himtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchhim' " +
+                                "data-StreetNumber='" + streetNumber + "' " +
+                                "data-StreetName='" + streetName + "' " +
+                                "data-StreetDirection='" + streetDirection + "' " +
+                                "data-StreetSuffix='" + streetSuffix + "' " +
+                                "data-City='" + city + "' " +
+                                "data-Zip='" + zip + "' " +
+                                "data-APN='" + apn + "' " +
+                                "data-NoofPage='" + result.NoofPageHim + "' " +
+                                "data-NoofRecord='" + result.CountHim + "'>" +
+                                "<p id='him-tfoot'>" + himtfootcontent +
+                                "</p></td ></tr > ");
+                            himthead.append(himtbody);
+                            himthead.append(himtfoot);
+                            himtable.append(himtableTitle);
+                            himtable.append(himthead);
+                            himtable.append("<p>" + result.CountHim + " records found. Maximum 200 records displayed</p>");
+                        } else {
+                            var himtableTitle = "<h2 class='tableTitle'> Hims2 Data not</h2>";
+                            var himtableCcontent = "<p>No record found</p>";
+                            himtable.append(himtableTitle);
+                            himtable.append(himtableCcontent);
+                        }
+                    }
+                    // if the user searchs from Rent
+                    if (result.SearchRent != null) {
+                        // if records are found
+                        if (result.CountRent != 0) {
+                            let rentresult = result.DataRent;
+                            let renttableTitle = "<h2 class='tableTitle'> Rents2 Data</h2>";
+                            let rentthead = $("<table>", { "class": "table table-bordered table-hover" });
+                            rentthead.append("<thead class='thead-light'> <tr>" +
+                                "<th>APN</th>" +
+                                "<th>Property_Address</th>" +
+                                "<th>Service_Date</th>" +
+                                "<th>Land_Use_Code</th>" +
+                                "<th>Unit_Count</th>" +
+                                "<th>Exempted_Units</th>" +
+                                "</tr> </thead>");
+                            let renttbody = $("<tbody>", { id: "rent-tbody" });
+                            $.each(rentresult, function (index, value) {
+                                var renttbodydata = "<tr>" +
+                                    "<td>" + value.APN + "</td>" +
+                                    "<td>" + value.Property_Address + "</td>" +
+                                    "<td>" + value.Service_Date + "</td>" +
+                                    "<td>" + value.Land_Use_Code + "</td>" +
+                                    "<td>" + value.Unit_Count + "</td>" +
+                                    "<td>" + value.Exempted_Units + "</td>" + "</tr>";
+                                renttbody.append(renttbodydata)
+                            })
+                            let renttfootcontent = "";
+                            for (let i = 1; i <= Math.min(result.NoofPageRent, 20); i++) {
+                                if (i == result.CurrentPageRent) {
+                                    renttfootcontent = renttfootcontent + i + "  ";
+                                } else {
+                                    renttfootcontent = renttfootcontent + "<a class='rent-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+                            let renttfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchrent' " +
+                                "data-StreetNumber='" + streetNumber + "' " +
+                                "data-StreetName='" + streetName + "' " +
+                                "data-StreetDirection='" + streetDirection + "' " +
+                                "data-StreetSuffix='" + streetSuffix + "' " +
+                                "data-City='" + city + "' " +
+                                "data-Zip='" + zip + "' " +
+                                "data-APN='" + apn + "' " +
+                                "data-NoofPage='" + result.NoofPageRent + "' " +
+                                "data-NoofRecord='" + result.CountRent + "'>" +
+                                "<p id='rent-tfoot'>" + renttfootcontent +
+                                "</p></td ></tr > ");
+                            rentthead.append(renttbody);
+                            rentthead.append(renttfoot);
+                            renttable.append(renttableTitle);
+                            renttable.append(rentthead);
+                            renttable.append("<p>" + result.CountRent + " records found. Maximum 200 records displayed</p>");
+                        } else {
+                            var renttableTitle = "<h2 class='tableTitle'> Rents2 Data not</h2>";
+                            var renttableCcontent = "<p>No record found</p>";
+                            renttable.append(renttableTitle);
+                            renttable.append(renttableCcontent);
+                        }
+                    } // end or rent
+                    // if the user searchs from Prop
+                    if (result.SearchProp != null) {
+                        // if records are found
+                        if (result.CountProp != 0) {
+                            let propresult = result.DataProp;
+                            let proptableTitle = "<h2 class='tableTitle'> Props2 Data</h2>";
+                            let propthead = $("<table>", { "class": "table table-bordered table-hover" });
+                            propthead.append("<thead class='thead-light'> <tr>" +
+                                "<th>APN</th>" +
+                                "<th>HouseID</th>" +
+                                "<th>Pin</th>" +
+                                "<th>HouseNum</th>" +
+                                "<th>HouseFracNum</th>" +
+                                "<th>PreDirCd</th>" +
+                                "<th>StreetName</th>" +
+                                "</tr> </thead>");
+                            let proptbody = $("<tbody>", { id: "prop-tbody" });
+                            $.each(propresult, function (index, value) {
+                                var proptbodydata = "<tr>" +
+                                    "<td>" + value.Apn + "</td>" +
+                                    "<td>" + value.HouseID + "</td>" +
+                                    "<td>" + value.Pin + "</td>" +
+                                    "<td>" + value.HouseNum + "</td>" +
+                                    "<td>" + value.HouseFracNum + "</td>" +
+                                    "<td>" + value.PreDirCd + "</td>" +
+                                    "<td>" + value.StreetName + "</td>" + "</tr>";
+                                proptbody.append(proptbodydata)
+                            })
+                            let proptfootcontent = "";
+                            for (let i = 1; i <= Math.min(result.NoofPageProp, 20); i++) {
+                                if (i == result.CurrentPageProp) {
+                                    proptfootcontent = proptfootcontent + i + "  ";
+                                } else {
+                                    proptfootcontent = proptfootcontent + "<a class='prop-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+                            let proptfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchprop' " +
+                                "data-StreetNumber='" + streetNumber + "' " +
+                                "data-StreetName='" + streetName + "' " +
+                                "data-StreetDirection='" + streetDirection + "' " +
+                                "data-StreetSuffix='" + streetSuffix + "' " +
+                                "data-City='" + city + "' " +
+                                "data-Zip='" + zip + "' " +
+                                "data-APN='" + apn + "' " +
+                                "data-NoofPage='" + result.NoofPageProp + "' " +
+                                "data-NoofRecord='" + result.CountProp + "'>" +
+                                "<p id='prop-tfoot'>" + proptfootcontent +
+                                "</p></td ></tr > ");
+                            propthead.append(proptbody);
+                            propthead.append(proptfoot);
+                            proptable.append(proptableTitle);
+                            proptable.append(propthead);
+                            proptable.append("<p>" + result.CountProp + " records found. Maximum 200 records displayed</p>");
+                        } else {
+                            var proptableTitle = "<h2 class='tableTitle'> Props2 Data not</h2>";
+                            var proptableCcontent = "<p>No record found</p>";
+                            proptable.append(proptableTitle);
+                            proptable.append(proptableCcontent);
+                        }
+                    } // end or prop
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $("#loader").hide();
+                },
             })
         });
+        //page clicked on bim table
         $(document).on('click', "a.bim-page-number", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -166,7 +371,6 @@
             var apn = $("#storedcurrentsearch").data("apn") ? $("#storedcurrentsearch").data("apn"):"";
             var pageNum = parseInt($(this).html().trim());
             var noofPage = $("#storedcurrentsearch").data("noofpage") ? $("#storedcurrentsearch").data("noofpage"):"";
-            bimtable.html("");
             $.ajax({
                 type: "GET",
                 url: "/Home/GetBimSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&NoofPage=" + noofPage,
@@ -192,7 +396,7 @@
                     })
                     $("#bim-tfoot").html("");
                     let tfootcontent = "";
-                    for (let i = 1; i <= Math.min(result.NumPage, 20); i++) {
+                    for (let i = 1; i <= Math.min(result.NoofPageBim, 20); i++) {
                         if (i == result.CurrentPageBim) {
                             tfootcontent = tfootcontent + i + "  ";
                         } else {
@@ -200,10 +404,147 @@
                         }
                     };
                     $("#bim-tfoot").append(tfootcontent);
-
                 }
             });
-        });
+        }); //end of Bim
+        //page clicked on him table
+        $(document).on('click', "a.him-page-number", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var streetNumber = $("#storedcurrentsearchhim").data("streetnumber") ? $("#storedcurrentsearchhim").data("streetnumber") : "";
+            var streetName = $("#storedcurrentsearchhim").data("streetname") ? $("#storedcurrentsearchhim").data("StreetName") : "";
+            var streetDirection = $("#storedcurrentsearchhim").data("streetdirection") ? $("#storedcurrentsearchhim").data("streetdirection") : "";
+            var streetSuffix = $("#storedcurrentsearchhim").data("streetsuffix") ? $("#storedcurrentsearchhim").data("streetsuffix") : "0";
+            var city = $("#storedcurrentsearchhim").data("city") ? $("#storedcurrentsearchhim").data("city") : "";
+            var zip = $("#storedcurrentsearchhim").data("zip") ? $("#storedcurrentsearchhim").data("zip") : "";
+            var apn = $("#storedcurrentsearchhim").data("apn") ? $("#storedcurrentsearchhim").data("apn") : "";
+            var pageNum = parseInt($(this).html().trim());
+            var noofPage = $("#storedcurrentsearchhim").data("noofpage") ? $("#storedcurrentsearchhim").data("noofpage") : "";
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetHimSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&NoofPage=" + noofPage,
+                contentType: "html",
+                success: function (result) {
+                    let himresult = result.DataHim;
+                    console.log(himresult);
+                    $("#him-tbody").html("");
+                    $.each(himresult, function (index, value) {
+                        var himtbodydata = "<tr>" +
+                            "<td>" + value.HOUSING_PROGRAM + "</td>" +
+                            "<td>" + value.ProjUniqueID + "</td>" +
+                            "<td>" + value.ProjectNo + "</td>" +
+                            "<td>" + value.PROJECT_STATUS + "</td>" +
+                            "<td>" + value.PROJECT_INFO + "</td>" +
+                            "<td>" + value.APN + "</td>" +
+                            "<td>" + value.HouseId + "</td>" +
+                            "<td>" + value.HouseNum + "</td>" +
+                            "<td>" + value.HouseFracNum + "</td>" +
+                            "<td>" + value.PIN + "</td>" +
+                            "<td>" + value.CouncilDistrict + "</td>" + "</tr>";
+                        $("#him-tbody").append(himtbodydata)
+                    })
+                    $("#him-tfoot").html("");
+                    let tfootcontent = "";
+                    for (let i = 1; i <= Math.min(result.NoofPageHim, 20); i++) {
+                        if (i == result.CurrentPageHim) {
+                            tfootcontent = tfootcontent + i + "  ";
+                        } else {
+                            tfootcontent = tfootcontent + "<a class='him-page-number' href='javascript:void();'>" + i + "  </a>";
+                        }
+                    };
+                    $("#him-tfoot").append(tfootcontent);
+                }
+            });
+        }); //end of Him
+        //page clicked on rent table
+        $(document).on('click', "a.rent-page-number", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var streetNumber = $("#storedcurrentsearchrent").data("streetnumber") ? $("#storedcurrentsearchrent").data("streetnumber") : "";
+            var streetName = $("#storedcurrentsearchrent").data("streetname") ? $("#storedcurrentsearchrent").data("StreetName") : "";
+            var streetDirection = $("#storedcurrentsearchrent").data("streetdirection") ? $("#storedcurrentsearchrent").data("streetdirection") : "";
+            var streetSuffix = $("#storedcurrentsearchrent").data("streetsuffix") ? $("#storedcurrentsearchrent").data("streetsuffix") : "0";
+            var city = $("#storedcurrentsearchrent").data("city") ? $("#storedcurrentsearchrent").data("city") : "";
+            var zip = $("#storedcurrentsearchrent").data("zip") ? $("#storedcurrentsearchrent").data("zip") : "";
+            var apn = $("#storedcurrentsearchrent").data("apn") ? $("#storedcurrentsearchrent").data("apn") : "";
+            var pageNum = parseInt($(this).html().trim());
+            var noofPage = $("#storedcurrentsearchrent").data("noofpage") ? $("#storedcurrentsearchrent").data("noofpage") : "";
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetRentSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&NoofPage=" + noofPage,
+                contentType: "html",
+                success: function (result) {
+                    let rentresult = result.DataRent;
+                    console.log(rentresult);
+                    $("#rent-tbody").html("");
+                    $.each(rentresult, function (index, value) {
+                        var renttbodydata = "<tr>" +
+                            "<td>" + value.APN + "</td>" +
+                            "<td>" + value.Property_Address + "</td>" +
+                            "<td>" + value.Service_Date + "</td>" +
+                            "<td>" + value.Land_Use_Code + "</td>" +
+                            "<td>" + value.Unit_Count + "</td>" +
+                            "<td>" + value.Exempted_Units + "</td>" + "</tr>";
+                        $("#rent-tbody").append(renttbodydata)
+                    })
+                    $("#rent-tfoot").html("");
+                    let tfootcontent = "";
+                    for (let i = 1; i <= Math.min(result.NoofPageRent, 20); i++) {
+                        if (i == result.CurrentPageRent) {
+                            tfootcontent = tfootcontent + i + "  ";
+                        } else {
+                            tfootcontent = tfootcontent + "<a class='rent-page-number' href='javascript:void();'>" + i + "  </a>";
+                        }
+                    };
+                    $("#rent-tfoot").append(tfootcontent);
+                }
+            });
+        }); //end of Rent
+        //page clicked on prop table
+        $(document).on('click', "a.prop-page-number", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var streetNumber = $("#storedcurrentsearchprop").data("streetnumber") ? $("#storedcurrentsearchprop").data("streetnumber") : "";
+            var streetName = $("#storedcurrentsearchprop").data("streetname") ? $("#storedcurrentsearchprop").data("StreetName") : "";
+            var streetDirection = $("#storedcurrentsearchprop").data("streetdirection") ? $("#storedcurrentsearchprop").data("streetdirection") : "";
+            var streetSuffix = $("#storedcurrentsearchprop").data("streetsuffix") ? $("#storedcurrentsearchprop").data("streetsuffix") : "0";
+            var city = $("#storedcurrentsearchprop").data("city") ? $("#storedcurrentsearchprop").data("city") : "";
+            var zip = $("#storedcurrentsearchprop").data("zip") ? $("#storedcurrentsearchprop").data("zip") : "";
+            var apn = $("#storedcurrentsearchprop").data("apn") ? $("#storedcurrentsearchprop").data("apn") : "";
+            var pageNum = parseInt($(this).html().trim());
+            var noofPage = $("#storedcurrentsearchprop").data("noofpage") ? $("#storedcurrentsearchprop").data("noofpage") : "";
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetPropSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&NoofPage=" + noofPage,
+                contentType: "html",
+                success: function (result) {
+                    let propresult = result.DataProp;
+                    console.log(propresult);
+                    $("#prop-tbody").html("");
+                    $.each(propresult, function (index, value) {
+                        var proptbodydata = "<tr>" +
+                            "<td>" + value.Apn + "</td>" +
+                            "<td>" + value.HouseID + "</td>" +
+                            "<td>" + value.Pin + "</td>" +
+                            "<td>" + value.HouseNum + "</td>" +
+                            "<td>" + value.HouseFracNum + "</td>" +
+                            "<td>" + value.PreDirCd + "</td>" +
+                            "<td>" + value.StreetName + "</td>" + "</tr>";
+                        $("#prop-tbody").append(proptbodydata)
+                    })
+                    $("#prop-tfoot").html("");
+                    let tfootcontent = "";
+                    for (let i = 1; i <= Math.min(result.NoofPageProp, 20); i++) {
+                        if (i == result.CurrentPageProp) {
+                            tfootcontent = tfootcontent + i + "  ";
+                        } else {
+                            tfootcontent = tfootcontent + "<a class='prop-page-number' href='javascript:void();'>" + i + "  </a>";
+                        }
+                    };
+                    $("#prop-tfoot").append(tfootcontent);
+                }
+            });
+        }); //end of Prop
 
     })
 </script>

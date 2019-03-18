@@ -44,3 +44,6 @@ h3.tabletitle {
     font-family: 'Quicksand', 'Hapna Slab Serif';
     margin-bottom: 20px;
 }
+#loader img {
+    width: 30px;
+}
