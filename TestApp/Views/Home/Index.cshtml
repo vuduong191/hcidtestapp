@@ -1,5 +1,4 @@
-﻿@model TestApp.Models.ModelTotal
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
@@ -24,7 +23,7 @@
     <div class="row">
         <br />
         <div id="searchblock">
-            <form action="/" class="searchform" method="get">
+            <form class="searchform" method="get">
                 <label>Street Number</label>
                 <input type="text" class="form-control" id="StreetNumber" name="StreetNumber">
                 <label>Street Name</label>
@@ -42,89 +41,169 @@
                 <input type="text" class="form-control" id="APN" name="APN">
                 <br />
                 <label>Choose Database(s)</label> <br />
-                <input class="form-check-input" type="checkbox" name="bims2"> Bims2<br>
-                <input class="form-check-input" type="checkbox" name="rent2"> Rent2<br>
-                <input class="form-check-input" type="checkbox" name="hims2"> Hims2<br>
-                <input class="form-check-input" type="checkbox" name="prop_site_address2"> Prop Site Addresss<br>
-                <input type="submit" class="btn btn-search" value="Search">
+                <input class="form-check-input" id="bimcheckbox" type="checkbox" name="bims2"> Bims2<br>
+                <input class="form-check-input" id="rentcheckbox" type="checkbox" name="rent2"> Rent2<br>
+                <input class="form-check-input" id="himcheckbox" type="checkbox" name="hims2"> Hims2<br>
+                <input class="form-check-input" id="propcheckbox" type="checkbox" name="prop_site_address2"> Prop Site Addresss<br>
+                <input type="submit" class="btn btn-search" id="SearchBtn" value="Search">
             </form>
         </div>
     </div>
     <div class="row">
-        @if (Model.Bims2List.Count > 0)
-        {
-        <div class="col-md-6">
-            <h3 class="tabletitle"> Bims Data</h3>
-            @foreach (var item in Model.Bims2List)
-            {
-                <p><b>APN: </b>@item.APN</p>
-                <p><b>Statement Number: </b>@item.StatementNum </p>
-                <p><b>Statement Date: </b>@item.StatementDate </p>
-                <p><b>Property Address: </b>@item.Property_Address </p>
-                <p><b>Property City, State, Zip: </b>@item.Property_City_State_Zip </p>
-                <p><b>RSO Exemptions: </b>@item.RSO_Exemptions</p>
-                <p><b>SCEP Exmpetions: </b>@item.SCEP_Exmpetions </p>
-                <p><b>IS RSO: </b>@item.IS_RSO </p>
-                <p><b>IS SCEP: </b>@item.IS_SCEP </p>
-                <p><b>RSO Invoice Num: </b>@item.RSO_Invoice_Num </p>
-                <p><b>SCEP Invoice_Num: </b>@item.SCEP_Invoice_Num </p>
-                <p><b>Total Units: </b>@item.Total_Units </p>
-                <p><b>RSO Units Billed: </b>@item.RSO_Units_Billed </p>
-            }
+        <div id= "bimTable">
+            
         </div>
-        }
-        else
-        {
-            <div class="col-md-6">
-                <h3> Bims Data</h3>
-                <p> No record found!</p>
-            </div>
-        }
-        @if (Model.Rent2List.Count > 0)
-        {
-            <div class="col-md-6">
-                <h3 class="tabletitle"> Rent Data</h3>
-                @foreach (var item in Model.Rent2List)
-                {
-                    <p><b>APN: </b>@item.APN</p>
-                    <p><b>Property Address: </b>@item.Property_Address </p>
-                    <p><b>Service Date: </b>@item.Service_Date</p>
-                    <p><b>Property Address: </b>@item.Property_Address </p>
-                    <p><b>Land_Use_Code: </b>@item.Land_Use_Code</p>
-                    <p><b>Unit Count: </b>@item.Unit_Count </p>
-                    <p><b>Exempted Units: </b>@item.Exempted_Units </p>
-                    <p><b>RSO Units: </b>@item.RSO_Units</p>
-                    <p><b>Year Built: </b>@item.Year_Built </p>
-                    <p><b>Category: </b>@item.Category</p>
-                    <p><b>Council District: </b>@item.Council_District </p>
-                }
-            </div>
-        }
-        else
-        {
-            <div class="col-md-6">
-                <h3> Rent Data</h3>
-                <p> No record found!</p>
-            </div>
-        }
+        <div id="himTable">
+
+        </div>
     </div>
 </div>
 <script type="text/javascript">
-    $('#StreetAddress').autocomplete({
-        source: function (request, response) {
+    $(document).ready(function () {
+        var bimtable = $("#bimTable");
+        var himtable = $("#himTable");
+        $("#SearchBtn").click(function (e) {
+            e.preventDefault();
+            var streetNumber = $("#StreetNumber").val().trim();
+            var streetName = $("#StreetName").val().trim();
+            var streetDirection = $("#StreetDirection").val();
+            var streetSuffix = $("#StreetSuffix").val();
+            var city = $("#City").val().trim();
+            var zip = $("#Zip").val().trim();
+            var apn = $("#APN").val().trim();
+            var bimscheckbox = $("#bimcheckbox").val();
+            var himscheckbox = $("#himcheckbox").val();
+            var rentcheckbox = $("#rentcheckbox").val();
+            var propcheckbox = $("#propcheckbox").val();
+
+            bimtable.html("");
             $.ajax({
-                url: '@Url.Action("AddressSearch", "Home")',
-                dataType: "json",
-                data: { search: $('#StreetAddress').val() },
-                success: function (data) {
-                    response($.map(data, function (item) {
-                        return { label: item.Property_Address + ", " + item.Property_City_State_Zip, value: item.Property_Address };
-                    }));
-                },
-                error: function (xhr, status, error) {
-                    alert("Error");
+                type: "GET",
+                url: "/Home/GetSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&bims2=" + bimscheckbox + "&rent2=" + rentcheckbox + "&hims2=" + himscheckbox + "&prop_site_address2=" + propcheckbox,
+                contentType: "html",
+                success: function (result) {
+                    console.log(result);
+                    console.log(result.SearchBim);
+                    console.log(result.CountBim);
+                    if (result.SearchBim != null) {
+                        if (result.CountBim != 0) {
+                            let bimresult = result.DataBim;
+                            let tableTitle = "<h2 class='tableTitle'> Bims2 Data</h2>";
+                            let bimthead = $("<table>", { "class": "table table-bordered" });
+                            bimthead.append("<thead> <tr>" +
+                                "<th>APN</th>" +
+                                "<th>Statement Num</th>" +
+                                "<th>Statement Date</th>" +
+                                "<th>Prop Add</th>" +
+                                "<th>City, State, Zip</th>" +
+                                "<th>RSO Exem/th>" +
+                                "<th>SCEP Exem</th>" +
+                                "<th>IS RSO</th>" +
+                                "<th>IS SCEP</th>" +
+                                "<th>RSO Inv Num</th>" +
+                                "<th>SCEP Inv Num</th>" +
+                                "</tr> </thead>");
+                            let bimtbody = $("<tbody>", { id: "bim-tbody" });
+                            $.each(bimresult, function (index, value) {
+                                var bimtbodydata = "<tr>" +
+                                    "<td>" + value.APN + "</td>" +
+                                    "<td>" + value.StatementNum + "</td>" +
+                                    "<td>" + value.StatementDate + "</td>" +
+                                    "<td>" + value.Property_Address + "</td>" +
+                                    "<td>" + value.Property_City_State_Zip + "</td>" +
+                                    "<td>" + value.RSO_Exemptions + "</td>" +
+                                    "<td>" + value.SCEP_Exmpetions + "</td>" +
+                                    "<td>" + value.IS_RSO + "</td>" +
+                                    "<td>" + value.IS_SCEP + "</td>" +
+                                    "<td>" + value.RSO_Invoice_Num + "</td>" +
+                                    "<td>" + value.SCEP_Invoice_Num + "</td>" + "</tr>";
+                                bimtbody.append(bimtbodydata)
+                            })
+                            let tfootcontent = "";
+                            for (let i = 1; i <= Math.min(result.NoofPageBim, 20); i++) {
+                                if (i == result.CurrentPageBim) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='bim-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+                            let bimtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearch' " +
+                                "data-StreetNumber='" + streetNumber + "' " +
+                                "data-StreetName='" + streetName + "' " +
+                                "data-StreetDirection='" + streetDirection + "' " +
+                                "data-StreetSuffix='" + streetSuffix + "' " +
+                                "data-City='" + city + "' " +
+                                "data-Zip='" + zip + "' " +
+                                "data-APN='" + apn + "' " +
+                                "data-NoofPage='" + result.NoofPageBim + "' " +
+                                "data-NoofRecord='" + result.CountBim + "'>" +
+                                "<p id='bim-tfoot'>" + tfootcontent +
+                                "</p></td ></tr > ");
+                            bimthead.append(bimtbody);
+                            bimthead.append(bimtfoot);
+                            bimtable.append(tableTitle);
+                            bimtable.append(bimthead);
+                            bimtable.append("<p>" + result.CountBim + " records found. Maximum 200 records displayed</p>");
+                        } else {
+                            var tableTitle = "<h2 class='tableTitle'> Bims2 Data not</h2>";
+                            var tableCcontent = "<p>No record found</p>";
+                            bimtable.append(tableTitle);
+                            bimtable.append(tableCcontent);
+                        }
+                    }
+                }
+            })
+        });
+        $(document).on('click', "a.bim-page-number", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var streetNumber = $("#storedcurrentsearch").data("streetnumber") ? $("#storedcurrentsearch").data("streetnumber"):"";
+            var streetName = $("#storedcurrentsearch").data("streetname") ? $("#storedcurrentsearch").data("StreetName"):"";
+            var streetDirection = $("#storedcurrentsearch").data("streetdirection") ? $("#storedcurrentsearch").data("streetdirection"):"";
+            var streetSuffix = $("#storedcurrentsearch").data("streetsuffix") ? $("#storedcurrentsearch").data("streetsuffix"):"0";
+            var city = $("#storedcurrentsearch").data("city") ? $("#storedcurrentsearch").data("city"):"";
+            var zip = $("#storedcurrentsearch").data("zip") ? $("#storedcurrentsearch").data("zip"):"";
+            var apn = $("#storedcurrentsearch").data("apn") ? $("#storedcurrentsearch").data("apn"):"";
+            var pageNum = parseInt($(this).html().trim());
+            var noofPage = $("#storedcurrentsearch").data("noofpage") ? $("#storedcurrentsearch").data("noofpage"):"";
+            bimtable.html("");
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetBimSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&NoofPage=" + noofPage,
+                contentType: "html",
+                success: function (result) {
+                    let bimresult = result.DataBim;
+                    console.log(bimresult);
+                    $("#bim-tbody").html("");
+                    $.each(bimresult, function (index, value) {
+                        var bimtbodydata = "<tr>" +
+                            "<td>" + value.APN + "</td>" +
+                            "<td>" + value.StatementNum + "</td>" +
+                            "<td>" + value.StatementDate + "</td>" +
+                            "<td>" + value.Property_Address + "</td>" +
+                            "<td>" + value.Property_City_State_Zip + "</td>" +
+                            "<td>" + value.RSO_Exemptions + "</td>" +
+                            "<td>" + value.SCEP_Exmpetions + "</td>" +
+                            "<td>" + value.IS_RSO + "</td>" +
+                            "<td>" + value.IS_SCEP + "</td>" +
+                            "<td>" + value.RSO_Invoice_Num + "</td>" +
+                            "<td>" + value.SCEP_Invoice_Num + "</td>" + "</tr>";
+                        $("#bim-tbody").append(bimtbodydata)
+                    })
+                    $("#bim-tfoot").html("");
+                    let tfootcontent = "";
+                    for (let i = 1; i <= Math.min(result.NumPage, 20); i++) {
+                        if (i == result.CurrentPageBim) {
+                            tfootcontent = tfootcontent + i + "  ";
+                        } else {
+                            tfootcontent = tfootcontent + "<a class='bim-page-number' href='javascript:void();'>" + i + "  </a>";
+                        }
+                    };
+                    $("#bim-tfoot").append(tfootcontent);
+
                 }
             });
-        }
-    });
+        });
+
+    })
 </script>

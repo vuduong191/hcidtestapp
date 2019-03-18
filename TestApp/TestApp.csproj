@@ -146,7 +146,6 @@
     <Compile Include="Models\bims2.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bims2VallueSearch.cs" />
     <Compile Include="Models\Bims2ViewModel.cs" />
     <Compile Include="Models\hims2.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
