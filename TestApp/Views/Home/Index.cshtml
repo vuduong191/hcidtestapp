@@ -242,11 +242,16 @@
                             let rentthead = $("<table>", { "class": "table table-bordered table-hover" });
                             rentthead.append("<thead class='thead-light'> <tr>" +
                                 "<th>APN</th>" +
-                                "<th>Property_Address</th>" +
-                                "<th>Service_Date</th>" +
-                                "<th>Land_Use_Code</th>" +
-                                "<th>Unit_Count</th>" +
-                                "<th>Exempted_Units</th>" +
+                                "<th>Property Address</th>" +
+                                "<th>Service Date</th>" +
+                                "<th>Land Use Code</th>" +
+                                "<th>Unit Count</th>" +
+                                "<th>Exempted Units</th>" +
+                                "<th>RSO Units</th>" +
+                                "<th>Year Built</th>" +
+                                "<th>Category</th>" +
+                                "<th>Secondary Address</th>" +
+                                "<th>House ID</th>" +
                                 "</tr> </thead>");
                             let renttbody = $("<tbody>", { id: "rent-tbody" });
                             $.each(rentresult, function (index, value) {
@@ -256,7 +261,13 @@
                                     "<td>" + value.Service_Date + "</td>" +
                                     "<td>" + value.Land_Use_Code + "</td>" +
                                     "<td>" + value.Unit_Count + "</td>" +
-                                    "<td>" + value.Exempted_Units + "</td>" + "</tr>";
+                                    "<td>" + value.Exempted_Units + "</td>" +
+                                    "<td>" + value.RSO_Units + "</td>" +
+                                    "<td>" + value.Year_Built + "</td>" +
+                                    "<td>" + value.Category + "</td>" +
+                                    "<td>" + value.Secondary_Address + "</td>" +
+                                    "<td>" + value.houseID + "</td>" +
+                                    "</tr>";
                                 renttbody.append(renttbodydata)
                             })
                             let renttfootcontent = "";
@@ -480,12 +491,18 @@
                     $("#rent-tbody").html("");
                     $.each(rentresult, function (index, value) {
                         var renttbodydata = "<tr>" +
-                            "<td>" + value.APN + "</td>" +
-                            "<td>" + value.Property_Address + "</td>" +
-                            "<td>" + value.Service_Date + "</td>" +
-                            "<td>" + value.Land_Use_Code + "</td>" +
-                            "<td>" + value.Unit_Count + "</td>" +
-                            "<td>" + value.Exempted_Units + "</td>" + "</tr>";
+                        "<td>" + value.APN + "</td>" +
+                        "<td>" + value.Property_Address + "</td>" +
+                        "<td>" + value.Service_Date + "</td>" +
+                        "<td>" + value.Land_Use_Code + "</td>" +
+                        "<td>" + value.Unit_Count + "</td>" +
+                        "<td>" + value.Exempted_Units + "</td>" +
+                        "<td>" + value.RSO_Units + "</td>" +
+                        "<td>" + value.Year_Built + "</td>" +
+                        "<td>" + value.Category + "</td>" +
+                        "<td>" + value.Secondary_Address + "</td>" +
+                        "<td>" + value.houseID + "</td>" +
+                        "</tr>";
                         $("#rent-tbody").append(renttbodydata)
                     })
                     $("#rent-tfoot").html("");
