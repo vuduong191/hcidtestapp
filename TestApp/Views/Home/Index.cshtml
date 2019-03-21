@@ -170,32 +170,35 @@
                             let himtableTitle = "<h2 class='tableTitle'> Hims2 Data</h2>";
                             let himthead = $("<table>", { "class": "table table-bordered table-hover" });
                             himthead.append("<thead class='thead-light'> <tr>" +
-                                "<th>HOUSING PROGRAM</th>" +
-                                "<th>Proj Unique ID</th>" +
-                                "<th>Project No</th>" +
-                                "<th>PROJECT STATUS</th>" +
-                                "<th>PROJECT INFO</th>" +
+                                "<th>Adress</th>" +
+                                "<th>City</th>" +
+                                "<th>Zip Code</th>" +
                                 "<th>APN</th>" +
-                                "<th>House Id</th>" +
-                                "<th>House Num</th>" +
-                                "<th>House FracNum</th>" +
-                                "<th>PIN</th>" +
+                                "<th>Housing Program</th>" +
+                                "<th>Project ID</th>" +
+                                "<th>Project #</th>" +
+                                "<th>Status</th>" +
+                                "<th>Project Info</th>" +
+                                "<th>House Frac Num</th>" +
                                 "<th>Council District</th>" +
+                                "<th>Pre Directory CD</th>" +
                                 "</tr> </thead>");
                             let himtbody = $("<tbody>", { id: "him-tbody" });
                             $.each(himresult, function (index, value) {
                                 var himtbodydata = "<tr>" +
+                                    "<td>" + value.HouseNum + " " + value.StreetName + " " + value.StreetTypeCd + "</td>" +
+                                    "<td>" + value.City + "</td>" +
+                                    "<td>" + value.ZipCode + "</td>" +
+                                    "<td>" + value.APN + "</td>" +
                                     "<td>" + value.HOUSING_PROGRAM + "</td>" +
-                                    "<td>" + value.ProjUniqueID  + "</td>" +
-                                    "<td>" + value.ProjectNo  + "</td>" +
+                                    "<td>" + value.ProjUniqueID + "</td>" +
+                                    "<td>" + value.ProjectNo + "</td>" +
                                     "<td>" + value.PROJECT_STATUS + "</td>" +
                                     "<td>" + value.PROJECT_INFO + "</td>" +
-                                    "<td>" + value.APN + "</td>" +
-                                    "<td>" + value.HouseId + "</td>" +
-                                    "<td>" + value.HouseNum + "</td>" +
                                     "<td>" + value.HouseFracNum + "</td>" +
-                                    "<td>" + value.PIN + "</td>" +
-                                    "<td>" + value.CouncilDistrict + "</td>" + "</tr>";
+                                    "<td>" + value.CouncilDistrict + "</td>" +
+                                    "<td>" + value.PreDirCd + "</td>" +
+                                    "</tr>";
                                 himtbody.append(himtbodydata)
                             })
                             let himtfootcontent = "";
@@ -426,17 +429,19 @@
                     $("#him-tbody").html("");
                     $.each(himresult, function (index, value) {
                         var himtbodydata = "<tr>" +
+                            "<td>" + value.HouseNum + " " + value.StreetName + " " + value.StreetTypeCd + "</td>" +
+                            "<td>" + value.City + "</td>" +
+                            "<td>" + value.ZipCode + "</td>" +
+                            "<td>" + value.APN + "</td>" +
                             "<td>" + value.HOUSING_PROGRAM + "</td>" +
                             "<td>" + value.ProjUniqueID + "</td>" +
                             "<td>" + value.ProjectNo + "</td>" +
                             "<td>" + value.PROJECT_STATUS + "</td>" +
                             "<td>" + value.PROJECT_INFO + "</td>" +
-                            "<td>" + value.APN + "</td>" +
-                            "<td>" + value.HouseId + "</td>" +
-                            "<td>" + value.HouseNum + "</td>" +
                             "<td>" + value.HouseFracNum + "</td>" +
-                            "<td>" + value.PIN + "</td>" +
-                            "<td>" + value.CouncilDistrict + "</td>" + "</tr>";
+                            "<td>" + value.CouncilDistrict + "</td>" +
+                            "<td>" + value.PreDirCd + "</td>" +
+                            "</tr>";
                         $("#him-tbody").append(himtbodydata)
                     })
                     $("#him-tfoot").html("");
