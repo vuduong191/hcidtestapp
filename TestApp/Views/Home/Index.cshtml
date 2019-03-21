@@ -311,23 +311,30 @@
                             let propthead = $("<table>", { "class": "table table-bordered table-hover" });
                             propthead.append("<thead class='thead-light'> <tr>" +
                                 "<th>APN</th>" +
-                                "<th>HouseID</th>" +
-                                "<th>Pin</th>" +
-                                "<th>HouseNum</th>" +
-                                "<th>HouseFracNum</th>" +
-                                "<th>PreDirCd</th>" +
-                                "<th>StreetName</th>" +
+                                "<th>Council District</th>" +
+                                "<th>CenTract 2010</th>" +
+                                "<th>Community Name</th>" +
+                                "<th>State Assembly District</th>" +
+                                "<th>State Senator District</th>" +
+                                "<th>US Congress District</th>" +
+                                "<th>County Sup District #</th>" +
+                                "<th>Community Plan Area ID</th>" +
+                                "<th>Neighborhood Council ID</th>" +
                                 "</tr> </thead>");
                             let proptbody = $("<tbody>", { id: "prop-tbody" });
                             $.each(propresult, function (index, value) {
                                 var proptbodydata = "<tr>" +
-                                    "<td>" + value.Apn + "</td>" +
-                                    "<td>" + value.HouseID + "</td>" +
-                                    "<td>" + value.Pin + "</td>" +
-                                    "<td>" + value.HouseNum + "</td>" +
-                                    "<td>" + value.HouseFracNum + "</td>" +
-                                    "<td>" + value.PreDirCd + "</td>" +
-                                    "<td>" + value.StreetName + "</td>" + "</tr>";
+                                "<td>" + value.Apn + "</td>" +
+                                "<td>" + value.CouncilDistrict + "</td>" +
+                                "<td>" + value.CenTract2010 + "</td>" +
+                                "<td>" + value.CommunityName + "</td>" +
+                                "<td>" + value.StateAssemDist + "</td>" +
+                                "<td>" + value.StateSenDist + "</td>" +
+                                "<td>" + value.UsCongDist + "</td>" +
+                                "<td>" + value.CountySupDistNum + "</td>" +
+                                "<td>" + value.CommunityPlanAreaID + "</td>" +
+                                "<td>" + value.NeighborhoodCouncilID + "</td>" +
+                                "</tr>";
                                 proptbody.append(proptbodydata)
                             })
                             let proptfootcontent = "";
@@ -541,13 +548,17 @@
                     $("#prop-tbody").html("");
                     $.each(propresult, function (index, value) {
                         var proptbodydata = "<tr>" +
-                            "<td>" + value.Apn + "</td>" +
-                            "<td>" + value.HouseID + "</td>" +
-                            "<td>" + value.Pin + "</td>" +
-                            "<td>" + value.HouseNum + "</td>" +
-                            "<td>" + value.HouseFracNum + "</td>" +
-                            "<td>" + value.PreDirCd + "</td>" +
-                            "<td>" + value.StreetName + "</td>" + "</tr>";
+                        "<td>" + value.Apn + "</td>" +
+                        "<td>" + value.CouncilDistrict + "</td>" +
+                        "<td>" + value.CenTract2010 + "</td>" +
+                        "<td>" + value.CommunityName + "</td>" +
+                        "<td>" + value.StateAssemDist + "</td>" +
+                        "<td>" + value.StateSenDist + "</td>" +
+                        "<td>" + value.UsCongDist + "</td>" +
+                        "<td>" + value.CountySupDistNum + "</td>" +
+                        "<td>" + value.CommunityPlanAreaID + "</td>" +
+                        "<td>" + value.NeighborhoodCouncilID + "</td>" +
+                        "</tr>";
                         $("#prop-tbody").append(proptbodydata)
                     })
                     $("#prop-tfoot").html("");
