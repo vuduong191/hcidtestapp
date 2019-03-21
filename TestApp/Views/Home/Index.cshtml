@@ -82,23 +82,27 @@
             var city = $("#City").val().trim();
             var zip = $("#Zip").val().trim();
             var apn = $("#APN").val().trim();
-            var bimscheckbox = $("#bimcheckbox").val();
-            var himscheckbox = $("#himcheckbox").val();
-            var rentcheckbox = $("#rentcheckbox").val();
-            var propcheckbox = $("#propcheckbox").val();
+            var bimscheckbox = $('#bimcheckbox').is(':checked') ? "on" : "";
+            var himscheckbox = $('#himcheckbox').is(':checked') ? "on" : "";
+            var rentcheckbox = $('#rentcheckbox').is(':checked') ? "on" : "";
+            var propcheckbox = $('#propcheckbox').is(':checked') ? "on" : "";
 
             bimtable.html("");
+            himtable.html("");
+            renttable.html("");
+            proptable.html("");
             $.ajax({
                 type: "GET",
-                url: "/Home/GetSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&bims2=" + bimscheckbox + "&rent2=" + rentcheckbox + "&hims2=" + himscheckbox + "&prop_site_address2=" + propcheckbox,
+                url: "/Home/GetSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&bims2cb=" + bimscheckbox + "&rent2cb=" + rentcheckbox + "&hims2cb=" + himscheckbox + "&prop_site_address2cb=" + propcheckbox,
                 contentType: "html",
                 beforeSend: function () {
                     // Show image container
                     $("#loader").show();
                 },
                 success: function (result) {
+                    console.log(this.url);
                     // if the user searchs from bim
-                    if (result.SearchBim != null) {
+                    if (result.SearchBim != "") {
                         // if records are found
                         if (result.CountBim != 0) {
                             let bimresult = result.DataBim;
@@ -163,7 +167,7 @@
                         }
                     }
                     // if the user searchs from him
-                    if (result.SearchHim != null) {
+                    if (result.SearchHim != "") {
                         // if records are found
                         if (result.CountHim != 0) {
                             let himresult = result.DataHim;
@@ -209,7 +213,7 @@
                                     himtfootcontent = himtfootcontent + "<a class='him-page-number' href='#'>" + i + "  </a>";
                                 }
                             };
-                            let himtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchhim' " +
+                            let himtfoot = $("<tfoot>").append("<tr><td colspan=12 id='storedcurrentsearchhim' " +
                                 "data-StreetNumber='" + streetNumber + "' " +
                                 "data-StreetName='" + streetName + "' " +
                                 "data-StreetDirection='" + streetDirection + "' " +
@@ -234,7 +238,7 @@
                         }
                     }
                     // if the user searchs from Rent
-                    if (result.SearchRent != null) {
+                    if (result.SearchRent != "") {
                         // if records are found
                         if (result.CountRent != 0) {
                             let rentresult = result.DataRent;
@@ -303,7 +307,8 @@
                         }
                     } // end or rent
                     // if the user searchs from Prop
-                    if (result.SearchProp != null) {
+                    if (result.SearchProp != "") {
+                        console.log(result.NoofPageProp)
                         // if records are found
                         if (result.CountProp != 0) {
                             let propresult = result.DataProp;
