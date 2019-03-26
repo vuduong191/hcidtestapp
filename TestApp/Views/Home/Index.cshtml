@@ -101,6 +101,7 @@
                 },
                 success: function (result) {
                     console.log(this.url);
+
                     // if the user searchs from bim
                     if (result.SearchBim != "") {
                         // if records are found
@@ -134,7 +135,9 @@
                                 "</tr>";
                                 bimtbody.append(bimtbodydata)
                             })
+
                             let tfootcontent = "";
+                            if (result.NoofPageBim > 20) {}
                             for (let i = 1; i <= Math.min(result.NoofPageBim, 20); i++) {
                                 if (i == result.CurrentPageBim) {
                                     tfootcontent = tfootcontent + i + "  ";
@@ -142,18 +145,35 @@
                                     tfootcontent = tfootcontent + "<a class='bim-page-number' href='#'>" + i + "  </a>";
                                 }
                             };
-                            let bimtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearch' " +
-                                "data-StreetNumber='" + streetNumber + "' " +
-                                "data-StreetName='" + streetName + "' " +
-                                "data-StreetDirection='" + streetDirection + "' " +
-                                "data-StreetSuffix='" + streetSuffix + "' " +
-                                "data-City='" + city + "' " +
-                                "data-Zip='" + zip + "' " +
-                                "data-APN='" + apn + "' " +
-                                "data-NoofPage='" + result.NoofPageBim + "' " +
-                                "data-NoofRecord='" + result.CountBim + "'>" +
-                                "<p id='bim-tfoot'>" + tfootcontent +
-                                "</p></td ></tr > ");
+
+                            if result.NoofPageBim > 20 {
+                                var bimtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearch' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageBim + "' " +
+                                    "data-NoofRecord='" + result.CountBim + "'>" +
+                                    "<p id='bim-tfoot'>" + tfootcontent +
+                                    "<button type='button' class='btn btn-info bim-next'>Next Pages</button></p></td ></tr > ");
+                            } else {
+                                var bimtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearch' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageBim + "' " +
+                                    "data-NoofRecord='" + result.CountBim + "'>" +
+                                    "<p id='bim-tfoot'>" + tfootcontent +
+                                    "</p></td ></tr > ");
+                            }
+
                             bimthead.append(bimtbody);
                             bimthead.append(bimtfoot);
                             bimtable.append(tableTitle);
@@ -165,6 +185,32 @@
                             bimtable.append(tableTitle);
                             bimtable.append(tableCcontent);
                         }
+
+                        $(document).on("click", ".bim-next", function() {
+                            let tfootcontent = "";
+                            for (let i = 21; i <= result.NoofPageBim); i++) {
+                                if (i == result.CurrentPageBim) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='bim-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#bim-tfoot").html("<button type='button' class='btn btn-info bim-prev'>Prev Pages</button>" + tfootcontent);
+                        });
+
+                        $(document).on("click", ".bim-prev", function() {
+                            let tfootcontent = "";
+                            for (let i = 1; i <= 20); i++) {
+                                if (i == result.CurrentPageBim) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='bim-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#bim-tfoot").html(tfootcontent + "<button type='button' class='btn btn-info bim-next'>Next Pages</button>");
+                        });
                     }
                     // if the user searchs from him
                     if (result.SearchHim != "") {
@@ -213,18 +259,35 @@
                                     himtfootcontent = himtfootcontent + "<a class='him-page-number' href='#'>" + i + "  </a>";
                                 }
                             };
-                            let himtfoot = $("<tfoot>").append("<tr><td colspan=12 id='storedcurrentsearchhim' " +
-                                "data-StreetNumber='" + streetNumber + "' " +
-                                "data-StreetName='" + streetName + "' " +
-                                "data-StreetDirection='" + streetDirection + "' " +
-                                "data-StreetSuffix='" + streetSuffix + "' " +
-                                "data-City='" + city + "' " +
-                                "data-Zip='" + zip + "' " +
-                                "data-APN='" + apn + "' " +
-                                "data-NoofPage='" + result.NoofPageHim + "' " +
-                                "data-NoofRecord='" + result.CountHim + "'>" +
-                                "<p id='him-tfoot'>" + himtfootcontent +
-                                "</p></td ></tr > ");
+
+                            if result.NoofPageHim > 20 {
+                                let himtfoot = $("<tfoot>").append("<tr><td colspan=12 id='storedcurrentsearchhim' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageHim + "' " +
+                                    "data-NoofRecord='" + result.CountHim + "'>" +
+                                    "<p id='him-tfoot'>" + himtfootcontent +
+                                    "<button type='button' class='btn btn-info him-next'>Next Pages</button></p></td ></tr > ");
+                            } else {
+                                let himtfoot = $("<tfoot>").append("<tr><td colspan=12 id='storedcurrentsearchhim' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageHim + "' " +
+                                    "data-NoofRecord='" + result.CountHim + "'>" +
+                                    "<p id='him-tfoot'>" + himtfootcontent +
+                                    "</p></td ></tr > ");
+                            }
+                            
                             himthead.append(himtbody);
                             himthead.append(himtfoot);
                             himtable.append(himtableTitle);
@@ -236,6 +299,32 @@
                             himtable.append(himtableTitle);
                             himtable.append(himtableCcontent);
                         }
+
+                        $(document).on("click", ".him-next", function() {
+                            let tfootcontent = "";
+                            for (let i = 21; i <= result.NoofPageHim); i++) {
+                                if (i == result.CurrentPageHim) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='him-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#him-tfoot").html("<button type='button' class='btn btn-info him-prev'>Prev Pages</button>" + tfootcontent);
+                        });
+
+                        $(document).on("click", ".him-prev", function() {
+                            let tfootcontent = "";
+                            for (let i = 1; i <= 20); i++) {
+                                if (i == result.CurrentPageHim) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='him-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#him-tfoot").html(tfootcontent + "<button type='button' class='btn btn-info him-next'>Next Pages</button>");
+                        });
                     }
                     // if the user searchs from Rent
                     if (result.SearchRent != "") {
@@ -282,18 +371,35 @@
                                     renttfootcontent = renttfootcontent + "<a class='rent-page-number' href='#'>" + i + "  </a>";
                                 }
                             };
-                            let renttfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchrent' " +
-                                "data-StreetNumber='" + streetNumber + "' " +
-                                "data-StreetName='" + streetName + "' " +
-                                "data-StreetDirection='" + streetDirection + "' " +
-                                "data-StreetSuffix='" + streetSuffix + "' " +
-                                "data-City='" + city + "' " +
-                                "data-Zip='" + zip + "' " +
-                                "data-APN='" + apn + "' " +
-                                "data-NoofPage='" + result.NoofPageRent + "' " +
-                                "data-NoofRecord='" + result.CountRent + "'>" +
-                                "<p id='rent-tfoot'>" + renttfootcontent +
-                                "</p></td ></tr > ");
+
+                            if result.NoofPageRent > 20 {
+                                let renttfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchrent' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageRent + "' " +
+                                    "data-NoofRecord='" + result.CountRent + "'>" +
+                                    "<p id='rent-tfoot'>" + renttfootcontent +
+                                    "<button type='button' class='btn btn-info rent-next'>Next Pages</button></p></td ></tr > ");
+                            } else {
+                                let renttfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchrent' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageRent + "' " +
+                                    "data-NoofRecord='" + result.CountRent + "'>" +
+                                    "<p id='rent-tfoot'>" + renttfootcontent +
+                                    "</p></td ></tr > ");
+                            }
+
                             rentthead.append(renttbody);
                             rentthead.append(renttfoot);
                             renttable.append(renttableTitle);
@@ -305,6 +411,32 @@
                             renttable.append(renttableTitle);
                             renttable.append(renttableCcontent);
                         }
+
+                        $(document).on("click", ".rent-next", function() {
+                            let tfootcontent = "";
+                            for (let i = 21; i <= result.NoofPageRent); i++) {
+                                if (i == result.CurrentPageRent) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='rent-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#rent-tfoot").html("<button type='button' class='btn btn-info rent-prev'>Prev Pages</button>" + tfootcontent);
+                        });
+
+                        $(document).on("click", ".rent-prev", function() {
+                            let tfootcontent = "";
+                            for (let i = 1; i <= 20); i++) {
+                                if (i == result.CurrentPageRent) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='rent-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#rent-tfoot").html(tfootcontent + "<button type='button' class='btn btn-info rent-next'>Next Pages</button>");
+                        });
                     } // end or rent
                     // if the user searchs from Prop
                     if (result.SearchProp != "") {
@@ -342,6 +474,7 @@
                                 "</tr>";
                                 proptbody.append(proptbodydata)
                             })
+
                             let proptfootcontent = "";
                             for (let i = 1; i <= Math.min(result.NoofPageProp, 20); i++) {
                                 if (i == result.CurrentPageProp) {
@@ -350,18 +483,35 @@
                                     proptfootcontent = proptfootcontent + "<a class='prop-page-number' href='#'>" + i + "  </a>";
                                 }
                             };
-                            let proptfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchprop' " +
-                                "data-StreetNumber='" + streetNumber + "' " +
-                                "data-StreetName='" + streetName + "' " +
-                                "data-StreetDirection='" + streetDirection + "' " +
-                                "data-StreetSuffix='" + streetSuffix + "' " +
-                                "data-City='" + city + "' " +
-                                "data-Zip='" + zip + "' " +
-                                "data-APN='" + apn + "' " +
-                                "data-NoofPage='" + result.NoofPageProp + "' " +
-                                "data-NoofRecord='" + result.CountProp + "'>" +
-                                "<p id='prop-tfoot'>" + proptfootcontent +
-                                "</p></td ></tr > ");
+
+                            if result.NoofPageProp > 20 {
+                                let proptfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchprop' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageProp + "' " +
+                                    "data-NoofRecord='" + result.CountProp + "'>" +
+                                    "<p id='prop-tfoot'>" + proptfootcontent +
+                                    "<button type='button' class='btn btn-info prop-next'>Next Pages</button></p></td ></tr > ");
+                            } else {
+                                let proptfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearchprop' " +
+                                    "data-StreetNumber='" + streetNumber + "' " +
+                                    "data-StreetName='" + streetName + "' " +
+                                    "data-StreetDirection='" + streetDirection + "' " +
+                                    "data-StreetSuffix='" + streetSuffix + "' " +
+                                    "data-City='" + city + "' " +
+                                    "data-Zip='" + zip + "' " +
+                                    "data-APN='" + apn + "' " +
+                                    "data-NoofPage='" + result.NoofPageProp + "' " +
+                                    "data-NoofRecord='" + result.CountProp + "'>" +
+                                    "<p id='prop-tfoot'>" + proptfootcontent +
+                                    "</p></td ></tr > ");
+                            }
+
                             propthead.append(proptbody);
                             propthead.append(proptfoot);
                             proptable.append(proptableTitle);
@@ -373,6 +523,32 @@
                             proptable.append(proptableTitle);
                             proptable.append(proptableCcontent);
                         }
+
+                        $(document).on("click", ".prop-next", function() {
+                            let tfootcontent = "";
+                            for (let i = 21; i <= result.NoofPageProp); i++) {
+                                if (i == result.CurrentPageProp) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='prop-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#prop-tfoot").html("<button type='button' class='btn btn-info prop-prev'>Prev Pages</button>" + tfootcontent);
+                        });
+
+                        $(document).on("click", ".prop-prev", function() {
+                            let tfootcontent = "";
+                            for (let i = 1; i <= 20); i++) {
+                                if (i == result.CurrentPageProp) {
+                                    tfootcontent = tfootcontent + i + "  ";
+                                } else {
+                                    tfootcontent = tfootcontent + "<a class='bim-page-number' href='#'>" + i + "  </a>";
+                                }
+                            };
+
+                            $("#prop-tfoot").html(tfootcontent + "<button type='button' class='btn btn-info prop-next'>Next Pages</button>");
+                        });
                     } // end or prop
                 },
                 complete: function (data) {

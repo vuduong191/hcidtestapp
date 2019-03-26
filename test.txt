@@ -1,0 +1,29 @@
+next button on click {
+    displaypages(21, noofpages)
+
+    make previous button
+    remove next button
+}
+
+prev button on click {
+    displaypages(1, min(noofpages, 20))
+
+    remove prev button
+}
+
+function displayfootcontent (a, b) {
+    #tfoot.html("");
+    if noofpages > 20 {
+        make next button
+    }
+
+    for (let i = a; i <= b; i++) {
+        if (i == result.CurrentPage) {
+                renttfootcontent = renttfootcontent + i + "  ";
+            } else {
+                footcontent = footcontent + "<a class='rent-page-number' href='#'>" + i + "  </a>";
+            }
+    }
+    append footcontent
+}
+
