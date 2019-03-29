@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="rentModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="rent2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="APN" Type="bigint" Nullable="false" />
+          <Property Name="Property_Address" Type="text" />
+          <Property Name="Service_Date" Type="varchar(max)" />
+          <Property Name="Land_Use_Code" Type="varchar(max)" />
+          <Property Name="Unit_Count" Type="int" />
+          <Property Name="Exempted_Units" Type="int" />
+          <Property Name="RSO_Units" Type="int" />
+          <Property Name="Year_Built" Type="int" />
+          <Property Name="Category" Type="varchar(max)" />
+          <Property Name="Council_District" Type="int" />
+          <Property Name="Secondary_Address" Type="text" />
+          <Property Name="houseID" Type="int" />
+          <Property Name="FC_NOTES" Type="varchar(max)" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="AddressMasterId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="rentModelNSStoreContainer">
+          <EntitySet Name="rent2" EntityType="Self.rent2" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rentModelNS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="rent2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="APN" Type="Int64" Nullable="false" />
+          <Property Name="Property_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Service_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Land_Use_Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Unit_Count" Type="Int32" />
+          <Property Name="Exempted_Units" Type="Int32" />
+          <Property Name="RSO_Units" Type="Int32" />
+          <Property Name="Year_Built" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Council_District" Type="Int32" />
+          <Property Name="Secondary_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="houseID" Type="Int32" />
+          <Property Name="FC_NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="AddressMasterId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="testdatabaseRent" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="rent2" EntityType="Self.rent2" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="rentModelNSStoreContainer" CdmEntityContainer="testdatabaseRent">
+          <EntitySetMapping Name="rent2">
+            <EntityTypeMapping TypeName="rentModelNS.rent2">
+              <MappingFragment StoreEntitySet="rent2">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="APN" ColumnName="APN" />
+                <ScalarProperty Name="Property_Address" ColumnName="Property_Address" />
+                <ScalarProperty Name="Service_Date" ColumnName="Service_Date" />
+                <ScalarProperty Name="Land_Use_Code" ColumnName="Land_Use_Code" />
+                <ScalarProperty Name="Unit_Count" ColumnName="Unit_Count" />
+                <ScalarProperty Name="Exempted_Units" ColumnName="Exempted_Units" />
+                <ScalarProperty Name="RSO_Units" ColumnName="RSO_Units" />
+                <ScalarProperty Name="Year_Built" ColumnName="Year_Built" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Council_District" ColumnName="Council_District" />
+                <ScalarProperty Name="Secondary_Address" ColumnName="Secondary_Address" />
+                <ScalarProperty Name="houseID" ColumnName="houseID" />
+                <ScalarProperty Name="FC_NOTES" ColumnName="FC_NOTES" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -140,38 +140,77 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\addressmaster2.cs">
-      <DependentUpon>TestModel.tt</DependentUpon>
+    <Compile Include="Models\BimModel2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BimModel2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BimModel2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BimModel2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BimModel2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BimModel2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\bims2.cs">
-      <DependentUpon>TestModel.tt</DependentUpon>
+      <DependentUpon>BimModel2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bims2ViewModel.cs" />
+    <Compile Include="Models\HimModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HimModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HimModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HimModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HimModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HimModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\hims2.cs">
-      <DependentUpon>TestModel.tt</DependentUpon>
+      <DependentUpon>HimModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelTotal.cs" />
+    <Compile Include="Models\PropModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\prop_site_address2.cs">
-      <DependentUpon>TestModel.tt</DependentUpon>
+      <DependentUpon>PropModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rent2.cs">
-      <DependentUpon>TestModel.tt</DependentUpon>
+      <DependentUpon>RentModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Rent2ViewModel.cs" />
-    <Compile Include="Models\TestModel.Context.cs">
+    <Compile Include="Models\RentModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestModel.Context.tt</DependentUpon>
+      <DependentUpon>RentModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TestModel.cs">
+    <Compile Include="Models\RentModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestModel.tt</DependentUpon>
+      <DependentUpon>RentModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TestModel.Designer.cs">
+    <Compile Include="Models\RentModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestModel.edmx</DependentUpon>
+      <DependentUpon>RentModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -198,24 +237,75 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\TestModel.Context.tt">
+    <Content Include="Models\BimModel2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TestModel.Context.cs</LastGenOutput>
-      <DependentUpon>TestModel.edmx</DependentUpon>
+      <DependentUpon>BimModel2.edmx</DependentUpon>
+      <LastGenOutput>BimModel2.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TestModel.tt">
+    <Content Include="Models\BimModel2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TestModel.edmx</DependentUpon>
-      <LastGenOutput>TestModel.cs</LastGenOutput>
+      <DependentUpon>BimModel2.edmx</DependentUpon>
+      <LastGenOutput>BimModel2.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HimModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HimModel.edmx</DependentUpon>
+      <LastGenOutput>HimModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HimModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HimModel.edmx</DependentUpon>
+      <LastGenOutput>HimModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PropModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PropModel.edmx</DependentUpon>
+      <LastGenOutput>PropModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PropModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PropModel.edmx</DependentUpon>
+      <LastGenOutput>PropModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RentModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RentModel.edmx</DependentUpon>
+      <LastGenOutput>RentModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RentModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RentModel.edmx</DependentUpon>
+      <LastGenOutput>RentModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TestModel.edmx">
+    <EntityDeploy Include="Models\BimModel2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TestModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BimModel2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\TestModel.edmx.diagram">
-      <DependentUpon>TestModel.edmx</DependentUpon>
+    <Content Include="Models\BimModel2.edmx.diagram">
+      <DependentUpon>BimModel2.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\HimModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HimModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HimModel.edmx.diagram">
+      <DependentUpon>HimModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\PropModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PropModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PropModel.edmx.diagram">
+      <DependentUpon>PropModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\RentModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RentModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RentModel.edmx.diagram">
+      <DependentUpon>RentModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="himModelNSStoreContainer" CdmEntityContainer="testdatabaseHim">
+    <EntitySetMapping Name="hims2">
+      <EntityTypeMapping TypeName="himModelNS.hims2">
+        <MappingFragment StoreEntitySet="hims2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="HOUSING_PROGRAM" ColumnName="HOUSING_PROGRAM" />
+          <ScalarProperty Name="ProjUniqueID" ColumnName="ProjUniqueID" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="PROJECT_STATUS" ColumnName="PROJECT_STATUS" />
+          <ScalarProperty Name="PROJECT_INFO" ColumnName="PROJECT_INFO" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="HouseId" ColumnName="HouseId" />
+          <ScalarProperty Name="HouseNum" ColumnName="HouseNum" />
+          <ScalarProperty Name="HouseFracNum" ColumnName="HouseFracNum" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="CouncilDistrict" ColumnName="CouncilDistrict" />
+          <ScalarProperty Name="PreDirCd" ColumnName="PreDirCd" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="StreetTypeCd" ColumnName="StreetTypeCd" />
+          <ScalarProperty Name="PostDirCd" ColumnName="PostDirCd" />
+          <ScalarProperty Name="UnitRange" ColumnName="UnitRange" />
+          <ScalarProperty Name="Unit_Number" ColumnName="Unit_Number" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="LAHD_Count" ColumnName="LAHD_Count" />
+          <ScalarProperty Name="LUPAM_Count" ColumnName="LUPAM_Count" />
+          <ScalarProperty Name="IsInFloodZone" ColumnName="IsInFloodZone" />
+          <ScalarProperty Name="CensusTract" ColumnName="CensusTract" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

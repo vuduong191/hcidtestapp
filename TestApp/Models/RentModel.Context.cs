@@ -13,10 +13,10 @@ namespace TestApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class hcid_lookupEntities : DbContext
+    public partial class testdatabaseRent : DbContext
     {
-        public hcid_lookupEntities()
-            : base("name=hcid_lookupEntities")
+        public testdatabaseRent()
+            : base("name=testdatabaseRent")
         {
         }
     
@@ -25,10 +25,6 @@ namespace TestApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<bims2> bims2 { get; set; }
-        public virtual DbSet<prop_site_address2> prop_site_address2 { get; set; }
         public virtual DbSet<rent2> rent2 { get; set; }
-        public virtual DbSet<addressmaster2> addressmaster2 { get; set; }
-        public virtual DbSet<hims2> hims2 { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="rentModelNSStoreContainer" CdmEntityContainer="testdatabaseRent">
+    <EntitySetMapping Name="rent2">
+      <EntityTypeMapping TypeName="rentModelNS.rent2">
+        <MappingFragment StoreEntitySet="rent2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="Property_Address" ColumnName="Property_Address" />
+          <ScalarProperty Name="Service_Date" ColumnName="Service_Date" />
+          <ScalarProperty Name="Land_Use_Code" ColumnName="Land_Use_Code" />
+          <ScalarProperty Name="Unit_Count" ColumnName="Unit_Count" />
+          <ScalarProperty Name="Exempted_Units" ColumnName="Exempted_Units" />
+          <ScalarProperty Name="RSO_Units" ColumnName="RSO_Units" />
+          <ScalarProperty Name="Year_Built" ColumnName="Year_Built" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Council_District" ColumnName="Council_District" />
+          <ScalarProperty Name="Secondary_Address" ColumnName="Secondary_Address" />
+          <ScalarProperty Name="houseID" ColumnName="houseID" />
+          <ScalarProperty Name="FC_NOTES" ColumnName="FC_NOTES" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

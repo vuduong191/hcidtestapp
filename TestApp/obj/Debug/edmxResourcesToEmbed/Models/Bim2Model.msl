@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="testdatabaseModelStoreContainer" CdmEntityContainer="testdatabaseBim">
+    <EntitySetMapping Name="bims2">
+      <EntityTypeMapping TypeName="testdatabaseModel.bims2">
+        <MappingFragment StoreEntitySet="bims2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="StatementNum" ColumnName="StatementNum" />
+          <ScalarProperty Name="StatementDate" ColumnName="StatementDate" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="Property_Address" ColumnName="Property_Address" />
+          <ScalarProperty Name="Property_City_State_Zip" ColumnName="Property_City_State_Zip" />
+          <ScalarProperty Name="RSO_Exemptions" ColumnName="RSO_Exemptions" />
+          <ScalarProperty Name="SCEP_Exmpetions" ColumnName="SCEP_Exmpetions" />
+          <ScalarProperty Name="IS_RSO" ColumnName="IS_RSO" />
+          <ScalarProperty Name="IS_SCEP" ColumnName="IS_SCEP" />
+          <ScalarProperty Name="RSO_Invoice_Num" ColumnName="RSO_Invoice_Num" />
+          <ScalarProperty Name="SCEP_Invoice_Num" ColumnName="SCEP_Invoice_Num" />
+          <ScalarProperty Name="Total_Units" ColumnName="Total_Units" />
+          <ScalarProperty Name="RSO_Units_Billed" ColumnName="RSO_Units_Billed" />
+          <ScalarProperty Name="SCEP_Units_Billed" ColumnName="SCEP_Units_Billed" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

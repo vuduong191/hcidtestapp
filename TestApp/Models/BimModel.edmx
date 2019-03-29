@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ser2model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'testdatabase2.dbo.hims2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="hims2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HOUSING_PROGRAM" Type="varchar(max)" />
+          <Property Name="ProjUniqueID" Type="int" />
+          <Property Name="ProjectNo" Type="int" />
+          <Property Name="PROJECT_STATUS" Type="varchar(max)" />
+          <Property Name="PROJECT_INFO" Type="text" />
+          <Property Name="APN" Type="varchar(max)" />
+          <Property Name="HouseId" Type="int" />
+          <Property Name="HouseNum" Type="varchar(max)" />
+          <Property Name="HouseFracNum" Type="varchar(max)" />
+          <Property Name="PIN" Type="varchar(max)" />
+          <Property Name="CouncilDistrict" Type="int" />
+          <Property Name="PreDirCd" Type="varchar(max)" />
+          <Property Name="StreetName" Type="varchar(max)" />
+          <Property Name="StreetTypeCd" Type="varchar(max)" />
+          <Property Name="PostDirCd" Type="varchar(max)" />
+          <Property Name="UnitRange" Type="varchar(max)" />
+          <Property Name="Unit_Number" Type="varchar(max)" />
+          <Property Name="ZipCode" Type="int" />
+          <Property Name="City" Type="varchar(max)" />
+          <Property Name="LAHD_Count" Type="int" />
+          <Property Name="LUPAM_Count" Type="int" />
+          <Property Name="IsInFloodZone" Type="varchar(max)" />
+          <Property Name="CensusTract" Type="int" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="AddressMasterId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="ser2modelStoreContainer">
+          <EntitySet Name="hims2" EntityType="Self.hims2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [hims2].[id] AS [id], 
+    [hims2].[HOUSING_PROGRAM] AS [HOUSING_PROGRAM], 
+    [hims2].[ProjUniqueID] AS [ProjUniqueID], 
+    [hims2].[ProjectNo] AS [ProjectNo], 
+    [hims2].[PROJECT_STATUS] AS [PROJECT_STATUS], 
+    [hims2].[PROJECT_INFO] AS [PROJECT_INFO], 
+    [hims2].[APN] AS [APN], 
+    [hims2].[HouseId] AS [HouseId], 
+    [hims2].[HouseNum] AS [HouseNum], 
+    [hims2].[HouseFracNum] AS [HouseFracNum], 
+    [hims2].[PIN] AS [PIN], 
+    [hims2].[CouncilDistrict] AS [CouncilDistrict], 
+    [hims2].[PreDirCd] AS [PreDirCd], 
+    [hims2].[StreetName] AS [StreetName], 
+    [hims2].[StreetTypeCd] AS [StreetTypeCd], 
+    [hims2].[PostDirCd] AS [PostDirCd], 
+    [hims2].[UnitRange] AS [UnitRange], 
+    [hims2].[Unit_Number] AS [Unit_Number], 
+    [hims2].[ZipCode] AS [ZipCode], 
+    [hims2].[City] AS [City], 
+    [hims2].[LAHD_Count] AS [LAHD_Count], 
+    [hims2].[LUPAM_Count] AS [LUPAM_Count], 
+    [hims2].[IsInFloodZone] AS [IsInFloodZone], 
+    [hims2].[CensusTract] AS [CensusTract], 
+    [hims2].[is_active] AS [is_active], 
+    [hims2].[AddressMasterId] AS [AddressMasterId]
+    FROM [dbo].[hims2] AS [hims2]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ser2model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="hims2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HOUSING_PROGRAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProjUniqueID" Type="Int32" />
+          <Property Name="ProjectNo" Type="Int32" />
+          <Property Name="PROJECT_STATUS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PROJECT_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="APN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HouseId" Type="Int32" />
+          <Property Name="HouseNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HouseFracNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CouncilDistrict" Type="Int32" />
+          <Property Name="PreDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StreetTypeCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PostDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UnitRange" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Unit_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LAHD_Count" Type="Int32" />
+          <Property Name="LUPAM_Count" Type="Int32" />
+          <Property Name="IsInFloodZone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CensusTract" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="AddressMasterId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="Ser2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="hims2" EntityType="Self.hims2" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ser2modelStoreContainer" CdmEntityContainer="Ser2">
+          <EntitySetMapping Name="hims2">
+            <EntityTypeMapping TypeName="ser2model.hims2">
+              <MappingFragment StoreEntitySet="hims2">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="HOUSING_PROGRAM" ColumnName="HOUSING_PROGRAM" />
+                <ScalarProperty Name="ProjUniqueID" ColumnName="ProjUniqueID" />
+                <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+                <ScalarProperty Name="PROJECT_STATUS" ColumnName="PROJECT_STATUS" />
+                <ScalarProperty Name="PROJECT_INFO" ColumnName="PROJECT_INFO" />
+                <ScalarProperty Name="APN" ColumnName="APN" />
+                <ScalarProperty Name="HouseId" ColumnName="HouseId" />
+                <ScalarProperty Name="HouseNum" ColumnName="HouseNum" />
+                <ScalarProperty Name="HouseFracNum" ColumnName="HouseFracNum" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="CouncilDistrict" ColumnName="CouncilDistrict" />
+                <ScalarProperty Name="PreDirCd" ColumnName="PreDirCd" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="StreetTypeCd" ColumnName="StreetTypeCd" />
+                <ScalarProperty Name="PostDirCd" ColumnName="PostDirCd" />
+                <ScalarProperty Name="UnitRange" ColumnName="UnitRange" />
+                <ScalarProperty Name="Unit_Number" ColumnName="Unit_Number" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="LAHD_Count" ColumnName="LAHD_Count" />
+                <ScalarProperty Name="LUPAM_Count" ColumnName="LUPAM_Count" />
+                <ScalarProperty Name="IsInFloodZone" ColumnName="IsInFloodZone" />
+                <ScalarProperty Name="CensusTract" ColumnName="CensusTract" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="propModelNSStoreContainer" CdmEntityContainer="testdatabaseProp">
+    <EntitySetMapping Name="prop_site_address2">
+      <EntityTypeMapping TypeName="propModelNS.prop_site_address2">
+        <MappingFragment StoreEntitySet="prop_site_address2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Apn" ColumnName="Apn" />
+          <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="HouseNum" ColumnName="HouseNum" />
+          <ScalarProperty Name="HouseFracNum" ColumnName="HouseFracNum" />
+          <ScalarProperty Name="PreDirCd" ColumnName="PreDirCd" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="StreetTypeCd" ColumnName="StreetTypeCd" />
+          <ScalarProperty Name="PostDirCd" ColumnName="PostDirCd" />
+          <ScalarProperty Name="UnitRange" ColumnName="UnitRange" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="ZipSuffix" ColumnName="ZipSuffix" />
+          <ScalarProperty Name="XCoord" ColumnName="XCoord" />
+          <ScalarProperty Name="YCoord" ColumnName="YCoord" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Pind" ColumnName="Pind" />
+          <ScalarProperty Name="EngDist" ColumnName="EngDist" />
+          <ScalarProperty Name="CouncilDistrict" ColumnName="CouncilDistrict" />
+          <ScalarProperty Name="LupLandUseCd" ColumnName="LupLandUseCd" />
+          <ScalarProperty Name="FlgHistMonument" ColumnName="FlgHistMonument" />
+          <ScalarProperty Name="LutCodeOfficeCd" ColumnName="LutCodeOfficeCd" />
+          <ScalarProperty Name="LutRentAreaCd" ColumnName="LutRentAreaCd" />
+          <ScalarProperty Name="LutHistPresZoneCd" ColumnName="LutHistPresZoneCd" />
+          <ScalarProperty Name="TbmPage" ColumnName="TbmPage" />
+          <ScalarProperty Name="TbmRow" ColumnName="TbmRow" />
+          <ScalarProperty Name="TbmCol" ColumnName="TbmCol" />
+          <ScalarProperty Name="CenTract2010" ColumnName="CenTract2010" />
+          <ScalarProperty Name="CenBlock2010GeoID" ColumnName="CenBlock2010GeoID" />
+          <ScalarProperty Name="CenBlock2010" ColumnName="CenBlock2010" />
+          <ScalarProperty Name="CenBlockGrp2010" ColumnName="CenBlockGrp2010" />
+          <ScalarProperty Name="CommunityName" ColumnName="CommunityName" />
+          <ScalarProperty Name="FlgInsideCoi" ColumnName="FlgInsideCoi" />
+          <ScalarProperty Name="CraRedevCd" ColumnName="CraRedevCd" />
+          <ScalarProperty Name="StateAssemDist" ColumnName="StateAssemDist" />
+          <ScalarProperty Name="StateSenDist" ColumnName="StateSenDist" />
+          <ScalarProperty Name="UsCongDist" ColumnName="UsCongDist" />
+          <ScalarProperty Name="CountySupDistNum" ColumnName="CountySupDistNum" />
+          <ScalarProperty Name="CommunityPlanAreaID" ColumnName="CommunityPlanAreaID" />
+          <ScalarProperty Name="NeighborhoodCouncilID" ColumnName="NeighborhoodCouncilID" />
+          <ScalarProperty Name="FlgNsp1" ColumnName="FlgNsp1" />
+          <ScalarProperty Name="FlgNsp2" ColumnName="FlgNsp2" />
+          <ScalarProperty Name="FlgNsp3" ColumnName="FlgNsp3" />
+          <ScalarProperty Name="HseAssignedCd" ColumnName="HseAssignedCd" />
+          <ScalarProperty Name="HseFlgDeleted" ColumnName="HseFlgDeleted" />
+          <ScalarProperty Name="ApnFlgDeleted" ColumnName="ApnFlgDeleted" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="AddressMasterId" ColumnName="AddressMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="rentModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="rent2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="APN" Type="bigint" Nullable="false" />
+    <Property Name="Property_Address" Type="text" />
+    <Property Name="Service_Date" Type="varchar(max)" />
+    <Property Name="Land_Use_Code" Type="varchar(max)" />
+    <Property Name="Unit_Count" Type="int" />
+    <Property Name="Exempted_Units" Type="int" />
+    <Property Name="RSO_Units" Type="int" />
+    <Property Name="Year_Built" Type="int" />
+    <Property Name="Category" Type="varchar(max)" />
+    <Property Name="Council_District" Type="int" />
+    <Property Name="Secondary_Address" Type="text" />
+    <Property Name="houseID" Type="int" />
+    <Property Name="FC_NOTES" Type="varchar(max)" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="rentModelNSStoreContainer">
+    <EntitySet Name="rent2" EntityType="Self.rent2" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

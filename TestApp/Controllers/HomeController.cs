@@ -12,7 +12,11 @@ namespace TestApp.Controllers
 {
     public class HomeController : Controller
     {
-        private hcid_lookupEntities db = new hcid_lookupEntities();
+        private testdatabaseBim dbBim = new testdatabaseBim();
+        private testdatabaseProp dbProp = new testdatabaseProp();
+        private testdatabaseRent dbRent = new testdatabaseRent();
+        private testdatabaseHim dbHim = new testdatabaseHim();
+
         public ActionResult Index()
         {
             // input for options in forms in views
@@ -73,7 +77,7 @@ namespace TestApp.Controllers
             List<prop_site_address2> pvm2 = new List<prop_site_address2>();
             if (bims2cb != "")
             {
-                bimcount = (from bim in db.bims2
+                bimcount = (from bim in dbBim.bims2
                         let APNString = SqlFunctions.StringConvert((double)bim.APN)
                         where (bim.Property_Address.Contains(abbv1) || bim.Property_Address.Contains(abbv2) || bim.Property_Address.Contains(abbv3) || bim.Property_Address.Contains(abbv4)) &&
                             (bim.Property_Address.Contains(StreetName) || StreetName == null) &&
@@ -84,7 +88,7 @@ namespace TestApp.Controllers
                             (APNString.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 bimnp = Convert.ToInt32(Math.Ceiling((double)bimcount / pageSize));
-                bvm2 = (from bim in db.bims2
+                bvm2 = (from bim in dbBim.bims2
                     let APNString = SqlFunctions.StringConvert((double)bim.APN)
                     where (bim.Property_Address.Contains(abbv1) || bim.Property_Address.Contains(abbv2) || bim.Property_Address.Contains(abbv3) || bim.Property_Address.Contains(abbv4)) &&
                         (bim.Property_Address.Contains(StreetName) || StreetName == null) &&
@@ -98,7 +102,7 @@ namespace TestApp.Controllers
             };
             if (hims2cb != "")
             {
-                himcount = (from bim in db.hims2
+                himcount = (from bim in dbHim.hims2
                         let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
                         where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
                             (bim.StreetName.Contains(StreetName) || StreetName == null) &&
@@ -109,7 +113,7 @@ namespace TestApp.Controllers
                             (bim.APN.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 himnp = Convert.ToInt32(Math.Ceiling((double)himcount / pageSize));
-                hvm2 = (from bim in db.hims2
+                hvm2 = (from bim in dbHim.hims2
                         let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
                         where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
                             (bim.StreetName.Contains(StreetName) || StreetName == null) &&
@@ -123,7 +127,7 @@ namespace TestApp.Controllers
             };
             if (rent2cb != "")
             {
-                rentcount = (from bim in db.rent2
+                rentcount = (from bim in dbRent.rent2
                         let APNString = SqlFunctions.StringConvert((double)bim.APN)
                         where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
                             (bim.Secondary_Address.Contains(StreetName) || StreetName == null) &&
@@ -134,7 +138,7 @@ namespace TestApp.Controllers
                             (APNString.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 rentnp = Convert.ToInt32(Math.Ceiling((double)rentcount / pageSize));
-                rvm2 = (from bim in db.rent2
+                rvm2 = (from bim in dbRent.rent2
                     let APNString = SqlFunctions.StringConvert((double)bim.APN)
                     where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
                         (bim.Secondary_Address.Contains(StreetName) || StreetName == null) &&
@@ -148,7 +152,7 @@ namespace TestApp.Controllers
             };
             if (prop_site_address2cb != "")
             {
-                propcount = (from bim in db.prop_site_address2
+                propcount = (from bim in dbProp.prop_site_address2
                         let APNString = SqlFunctions.StringConvert((double)bim.Apn)
                         let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
                         let ZipCodeString = SqlFunctions.StringConvert((double)bim.Zip)
@@ -161,7 +165,7 @@ namespace TestApp.Controllers
                             (APNString.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 propnp = Convert.ToInt32(Math.Ceiling((double)propcount / pageSize));
-                pvm2 = (from bim in db.prop_site_address2
+                pvm2 = (from bim in dbProp.prop_site_address2
                         let APNString = SqlFunctions.StringConvert((double)bim.Apn)
                         let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
                         let ZipCodeString = SqlFunctions.StringConvert((double)bim.Zip)
@@ -211,7 +215,7 @@ namespace TestApp.Controllers
             bimnp = himnp = rentnp = propnp = 1;
 
             List<bims2> bvm2 = new List<bims2>();
-                bvm2 = (from bim in db.bims2
+                bvm2 = (from bim in dbBim.bims2
                         let APNString = SqlFunctions.StringConvert((double)bim.APN)
                         where (bim.Property_Address.Contains(abbv1) || bim.Property_Address.Contains(abbv2) || bim.Property_Address.Contains(abbv3) || bim.Property_Address.Contains(abbv4)) &&
                             (bim.Property_Address.Contains(StreetName) || StreetName == null) &&
@@ -259,7 +263,7 @@ namespace TestApp.Controllers
             bimnp = himnp = rentnp = propnp = 1;
 
             List<hims2> hvm2 = new List<hims2>();
-            hvm2 = (from bim in db.hims2
+            hvm2 = (from bim in dbHim.hims2
                     let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
                     where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
                         (bim.StreetName.Contains(StreetName) || StreetName == null) &&
@@ -307,7 +311,7 @@ namespace TestApp.Controllers
             bimnp = himnp = rentnp = propnp = 1;
 
             List<rent2> rvm2 = new List<rent2>();
-            rvm2 = (from bim in db.rent2
+            rvm2 = (from bim in dbRent.rent2
                     let APNString = SqlFunctions.StringConvert((double)bim.APN)
                     where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
                         (bim.Secondary_Address.Contains(StreetName) || StreetName == null) &&
@@ -355,7 +359,7 @@ namespace TestApp.Controllers
             bimnp = himnp = rentnp = propnp = 1;
 
             List<prop_site_address2> pvm2 = new List<prop_site_address2>();
-            pvm2 = (from bim in db.prop_site_address2
+            pvm2 = (from bim in dbProp.prop_site_address2
                     let APNString = SqlFunctions.StringConvert((double)bim.Apn)
                     let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
                     let ZipCodeString = SqlFunctions.StringConvert((double)bim.Zip)

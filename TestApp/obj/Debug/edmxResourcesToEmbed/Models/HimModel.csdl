@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="himModelNS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="hims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HOUSING_PROGRAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProjUniqueID" Type="Int32" />
+    <Property Name="ProjectNo" Type="Int32" />
+    <Property Name="PROJECT_STATUS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PROJECT_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="APN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HouseId" Type="Int32" />
+    <Property Name="HouseNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HouseFracNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CouncilDistrict" Type="Int32" />
+    <Property Name="PreDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetTypeCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PostDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitRange" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LAHD_Count" Type="Int32" />
+    <Property Name="LUPAM_Count" Type="Int32" />
+    <Property Name="IsInFloodZone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CensusTract" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="testdatabaseHim" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="hims2" EntityType="Self.hims2" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bimModelNS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatementNum" Type="Int32" />
+    <Property Name="StatementDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="APN" Type="Int64" Nullable="false" />
+    <Property Name="Property_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Property_City_State_Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RSO_Exemptions" Type="Int32" />
+    <Property Name="SCEP_Exmpetions" Type="Int32" />
+    <Property Name="IS_RSO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IS_SCEP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RSO_Invoice_Num" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SCEP_Invoice_Num" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Total_Units" Type="Int32" />
+    <Property Name="RSO_Units_Billed" Type="Int32" />
+    <Property Name="SCEP_Units_Billed" Type="Int32" />
+    <Property Name="is_active" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="testdatabaseBim" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bims2" EntityType="Self.bims2" />
+  </EntityContainer>
+</Schema>

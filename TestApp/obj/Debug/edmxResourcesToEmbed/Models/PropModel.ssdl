@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="propModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="prop_site_address2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apn" Type="bigint" Nullable="false" />
+    <Property Name="HouseID" Type="int" />
+    <Property Name="Pin" Type="varchar(max)" />
+    <Property Name="HouseNum" Type="int" />
+    <Property Name="HouseFracNum" Type="varchar(max)" />
+    <Property Name="PreDirCd" Type="varchar(max)" />
+    <Property Name="StreetName" Type="varchar(max)" />
+    <Property Name="StreetTypeCd" Type="varchar(max)" />
+    <Property Name="PostDirCd" Type="varchar(max)" />
+    <Property Name="UnitRange" Type="varchar(max)" />
+    <Property Name="City" Type="varchar(max)" />
+    <Property Name="Zip" Type="int" />
+    <Property Name="ZipSuffix" Type="smallint" />
+    <Property Name="XCoord" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YCoord" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Lon" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Lat" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Pind" Type="varchar(max)" />
+    <Property Name="EngDist" Type="varchar(max)" />
+    <Property Name="CouncilDistrict" Type="tinyint" />
+    <Property Name="LupLandUseCd" Type="varchar(max)" />
+    <Property Name="FlgHistMonument" Type="bit" />
+    <Property Name="LutCodeOfficeCd" Type="smallint" />
+    <Property Name="LutRentAreaCd" Type="smallint" />
+    <Property Name="LutHistPresZoneCd" Type="smallint" />
+    <Property Name="TbmPage" Type="int" />
+    <Property Name="TbmRow" Type="int" />
+    <Property Name="TbmCol" Type="varchar(max)" />
+    <Property Name="CenTract2010" Type="int" />
+    <Property Name="CenBlock2010GeoID" Type="varchar(max)" />
+    <Property Name="CenBlock2010" Type="varchar(max)" />
+    <Property Name="CenBlockGrp2010" Type="varchar(max)" />
+    <Property Name="CommunityName" Type="varchar(max)" />
+    <Property Name="FlgInsideCoi" Type="bit" />
+    <Property Name="CraRedevCd" Type="varchar(max)" />
+    <Property Name="StateAssemDist" Type="int" />
+    <Property Name="StateSenDist" Type="int" />
+    <Property Name="UsCongDist" Type="int" />
+    <Property Name="CountySupDistNum" Type="int" />
+    <Property Name="CommunityPlanAreaID" Type="int" />
+    <Property Name="NeighborhoodCouncilID" Type="int" />
+    <Property Name="FlgNsp1" Type="bit" />
+    <Property Name="FlgNsp2" Type="bit" />
+    <Property Name="FlgNsp3" Type="bit" />
+    <Property Name="HseAssignedCd" Type="varchar(max)" />
+    <Property Name="HseFlgDeleted" Type="bit" />
+    <Property Name="ApnFlgDeleted" Type="bit" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="propModelNSStoreContainer">
+    <EntitySet Name="prop_site_address2" EntityType="Self.prop_site_address2" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

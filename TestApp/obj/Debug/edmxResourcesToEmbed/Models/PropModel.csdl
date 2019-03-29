@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="propModelNS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="prop_site_address2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Apn" Type="Int64" Nullable="false" />
+    <Property Name="HouseID" Type="Int32" />
+    <Property Name="Pin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HouseNum" Type="Int32" />
+    <Property Name="HouseFracNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PreDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetTypeCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PostDirCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitRange" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="Int32" />
+    <Property Name="ZipSuffix" Type="Int16" />
+    <Property Name="XCoord" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="YCoord" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Lon" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Lat" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Pind" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EngDist" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CouncilDistrict" Type="Byte" />
+    <Property Name="LupLandUseCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FlgHistMonument" Type="Boolean" />
+    <Property Name="LutCodeOfficeCd" Type="Int16" />
+    <Property Name="LutRentAreaCd" Type="Int16" />
+    <Property Name="LutHistPresZoneCd" Type="Int16" />
+    <Property Name="TbmPage" Type="Int32" />
+    <Property Name="TbmRow" Type="Int32" />
+    <Property Name="TbmCol" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CenTract2010" Type="Int32" />
+    <Property Name="CenBlock2010GeoID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CenBlock2010" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CenBlockGrp2010" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CommunityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FlgInsideCoi" Type="Boolean" />
+    <Property Name="CraRedevCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StateAssemDist" Type="Int32" />
+    <Property Name="StateSenDist" Type="Int32" />
+    <Property Name="UsCongDist" Type="Int32" />
+    <Property Name="CountySupDistNum" Type="Int32" />
+    <Property Name="CommunityPlanAreaID" Type="Int32" />
+    <Property Name="NeighborhoodCouncilID" Type="Int32" />
+    <Property Name="FlgNsp1" Type="Boolean" />
+    <Property Name="FlgNsp2" Type="Boolean" />
+    <Property Name="FlgNsp3" Type="Boolean" />
+    <Property Name="HseAssignedCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HseFlgDeleted" Type="Boolean" />
+    <Property Name="ApnFlgDeleted" Type="Boolean" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="AddressMasterId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="testdatabaseProp" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="prop_site_address2" EntityType="Self.prop_site_address2" />
+  </EntityContainer>
+</Schema>

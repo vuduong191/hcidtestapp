@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="himModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'testdatabasehim.dbo.hims2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="hims2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HOUSING_PROGRAM" Type="varchar(max)" />
+    <Property Name="ProjUniqueID" Type="int" />
+    <Property Name="ProjectNo" Type="int" />
+    <Property Name="PROJECT_STATUS" Type="varchar(max)" />
+    <Property Name="PROJECT_INFO" Type="text" />
+    <Property Name="APN" Type="varchar(max)" />
+    <Property Name="HouseId" Type="int" />
+    <Property Name="HouseNum" Type="varchar(max)" />
+    <Property Name="HouseFracNum" Type="varchar(max)" />
+    <Property Name="PIN" Type="varchar(max)" />
+    <Property Name="CouncilDistrict" Type="int" />
+    <Property Name="PreDirCd" Type="varchar(max)" />
+    <Property Name="StreetName" Type="varchar(max)" />
+    <Property Name="StreetTypeCd" Type="varchar(max)" />
+    <Property Name="PostDirCd" Type="varchar(max)" />
+    <Property Name="UnitRange" Type="varchar(max)" />
+    <Property Name="Unit_Number" Type="varchar(max)" />
+    <Property Name="ZipCode" Type="int" />
+    <Property Name="City" Type="varchar(max)" />
+    <Property Name="LAHD_Count" Type="int" />
+    <Property Name="LUPAM_Count" Type="int" />
+    <Property Name="IsInFloodZone" Type="varchar(max)" />
+    <Property Name="CensusTract" Type="int" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="AddressMasterId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="himModelNSStoreContainer">
+    <EntitySet Name="hims2" EntityType="Self.hims2" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [hims2].[id] AS [id], 
+    [hims2].[HOUSING_PROGRAM] AS [HOUSING_PROGRAM], 
+    [hims2].[ProjUniqueID] AS [ProjUniqueID], 
+    [hims2].[ProjectNo] AS [ProjectNo], 
+    [hims2].[PROJECT_STATUS] AS [PROJECT_STATUS], 
+    [hims2].[PROJECT_INFO] AS [PROJECT_INFO], 
+    [hims2].[APN] AS [APN], 
+    [hims2].[HouseId] AS [HouseId], 
+    [hims2].[HouseNum] AS [HouseNum], 
+    [hims2].[HouseFracNum] AS [HouseFracNum], 
+    [hims2].[PIN] AS [PIN], 
+    [hims2].[CouncilDistrict] AS [CouncilDistrict], 
+    [hims2].[PreDirCd] AS [PreDirCd], 
+    [hims2].[StreetName] AS [StreetName], 
+    [hims2].[StreetTypeCd] AS [StreetTypeCd], 
+    [hims2].[PostDirCd] AS [PostDirCd], 
+    [hims2].[UnitRange] AS [UnitRange], 
+    [hims2].[Unit_Number] AS [Unit_Number], 
+    [hims2].[ZipCode] AS [ZipCode], 
+    [hims2].[City] AS [City], 
+    [hims2].[LAHD_Count] AS [LAHD_Count], 
+    [hims2].[LUPAM_Count] AS [LUPAM_Count], 
+    [hims2].[IsInFloodZone] AS [IsInFloodZone], 
+    [hims2].[CensusTract] AS [CensusTract], 
+    [hims2].[is_active] AS [is_active], 
+    [hims2].[AddressMasterId] AS [AddressMasterId]
+    FROM [dbo].[hims2] AS [hims2]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

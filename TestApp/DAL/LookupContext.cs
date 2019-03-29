@@ -15,8 +15,6 @@ namespace TestApp.DAL
         {
         }
 
-        public DbSet<bims2> bims2 { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
