@@ -65,10 +65,17 @@ namespace TestApp.Controllers
 
             //Number of records on a page;
             int pageSize = 10;
+            int setSize = 20;//number of page displayed each set
             int bimcount, himcount, rentcount, propcount;
+            // Number of record
             bimcount = himcount = rentcount = propcount = 0;
+
+            //Number of page
             int bimnp, himnp, rentnp, propnp;
             bimnp = himnp = rentnp = propnp = 1;
+            //Number of set, each set has 20 pages
+            int bimns, himns, rentns, propns;
+            bimns = himns = rentns = propns = 1;
 
             List<bims2> bvm2 = new List<bims2>();
             List<bims2> bvm3 = new List<bims2>();
@@ -88,6 +95,7 @@ namespace TestApp.Controllers
                             (APNString.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 bimnp = Convert.ToInt32(Math.Ceiling((double)bimcount / pageSize));
+                bimns = Convert.ToInt32(Math.Ceiling((double)bimnp / setSize));
                 bvm2 = (from bim in dbBim.bims2
                     let APNString = SqlFunctions.StringConvert((double)bim.APN)
                     where (bim.Property_Address.Contains(abbv1) || bim.Property_Address.Contains(abbv2) || bim.Property_Address.Contains(abbv3) || bim.Property_Address.Contains(abbv4)) &&
@@ -113,6 +121,7 @@ namespace TestApp.Controllers
                             (bim.APN.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 himnp = Convert.ToInt32(Math.Ceiling((double)himcount / pageSize));
+                himns = Convert.ToInt32(Math.Ceiling((double)himnp / setSize));
                 hvm2 = (from bim in dbHim.hims2
                         let ZipCodeString = SqlFunctions.StringConvert((double)bim.ZipCode)
                         where (bim.StreetTypeCd.Contains(abbv1) || bim.StreetTypeCd.Contains(abbv2) || bim.StreetTypeCd.Contains(abbv3) || bim.StreetTypeCd.Contains(abbv4)) &&
@@ -138,6 +147,7 @@ namespace TestApp.Controllers
                             (APNString.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 rentnp = Convert.ToInt32(Math.Ceiling((double)rentcount / pageSize));
+                rentns = Convert.ToInt32(Math.Ceiling((double)rentnp / setSize));
                 rvm2 = (from bim in dbRent.rent2
                     let APNString = SqlFunctions.StringConvert((double)bim.APN)
                     where (bim.Secondary_Address.Contains(abbv1) || bim.Secondary_Address.Contains(abbv2) || bim.Secondary_Address.Contains(abbv3) || bim.Secondary_Address.Contains(abbv4)) &&
@@ -165,6 +175,7 @@ namespace TestApp.Controllers
                             (APNString.Contains(APN) || APN == null)
                         select bim).ToList().Count();
                 propnp = Convert.ToInt32(Math.Ceiling((double)propcount / pageSize));
+                propns = Convert.ToInt32(Math.Ceiling((double)propnp / setSize));
                 pvm2 = (from bim in dbProp.prop_site_address2
                         let APNString = SqlFunctions.StringConvert((double)bim.Apn)
                         let HouseNumString = SqlFunctions.StringConvert((double)bim.HouseNum)
@@ -179,15 +190,43 @@ namespace TestApp.Controllers
                         orderby (bim.id)
                         select bim).Take(pageSize).ToList();
             }
-            var data = new { SearchBim = bims2cb, SearchHim = hims2cb, SearchRent = rent2cb, SearchProp = prop_site_address2cb,
-                            CountBim = bimcount, DataBim = bvm2, NoofPageBim = bimnp, CurrentPageBim = 1,
-                            CountHim = himcount, DataHim = hvm2, NoofPageHim = himnp, CurrentPageHim = 1,
-                            CountRent = rentcount, DataRent = rvm2, NoofPageRent = rentnp, CurrentPageRent = 1,
-                            CountProp = propcount, DataProp = pvm2, NoofPageProp = propnp, CurrentPageProp = 1, };
+            var data = new
+            {
+                PageSize = pageSize,
+                SetSize = setSize,
+                SearchBim = bims2cb,
+                SearchHim = hims2cb,
+                SearchRent = rent2cb,
+                SearchProp = prop_site_address2cb,
+                CountBim = bimcount,
+                DataBim = bvm2,
+                NoofPageBim = bimnp,
+                CurrentPageBim = 1,
+                CurrentSetBim = 1,
+                NoofSetBim = bimns,
+                CountHim = himcount,
+                DataHim = hvm2,
+                NoofPageHim = himnp,
+                CurrentPageHim = 1,
+                CurrentSetHim = 1,
+                NoofSetHim = himns,
+                CountRent = rentcount,
+                DataRent = rvm2,
+                NoofPageRent = rentnp,
+                CurrentPageRent = 1,
+                CurrentSetRent = 1,
+                NoofSetRent = rentns,
+                CountProp = propcount,
+                DataProp = pvm2,
+                NoofPageProp = propnp,
+                CurrentPageProp = 1,
+                CurrentSetProp = 1,
+                NoofSetProp = propns
+            };
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         //Get paged data from bim table
-        public JsonResult GetBimSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        public JsonResult GetBimSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string CurrentSet)
         {
             // prepare a list of variants of street type
             Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
@@ -208,11 +247,17 @@ namespace TestApp.Controllers
             string abbv4 = StSuffAbbv[SSInt][3];
             //Number of records on a page;
             int pageSize = 10;
+            int setSize = 20;//number of page displayed each set
             int bimcount, himcount, rentcount, propcount;
+            // Number of record
             bimcount = himcount = rentcount = propcount = 0;
-            //Number of pages
+
+            //Number of page
             int bimnp, himnp, rentnp, propnp;
             bimnp = himnp = rentnp = propnp = 1;
+            //Number of set, each set has 20 pages
+            int bimns, himns, rentns, propns;
+            bimns = himns = rentns = propns = 1;
 
             List<bims2> bvm2 = new List<bims2>();
                 bvm2 = (from bim in dbBim.bims2
@@ -228,9 +273,9 @@ namespace TestApp.Controllers
                         select bim).Skip((Convert.ToInt32(PageNum) - 1)*pageSize).Take(pageSize).ToList();
             var data = new
             {
+                CurrentSetBim = CurrentSet,
                 DataBim = bvm2,
-                CurrentPageBim = PageNum,
-                NoofPageBim = NoofPage
+                CurrentPageBim = PageNum
             };
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -254,13 +299,20 @@ namespace TestApp.Controllers
             string abbv2 = StSuffAbbv[SSInt][1];
             string abbv3 = StSuffAbbv[SSInt][2];
             string abbv4 = StSuffAbbv[SSInt][3];
+
             //Number of records on a page;
             int pageSize = 10;
+            int setSize = 20;//number of page displayed each set
             int bimcount, himcount, rentcount, propcount;
+            // Number of record
             bimcount = himcount = rentcount = propcount = 0;
-            //Number of pages
+
+            //Number of page
             int bimnp, himnp, rentnp, propnp;
             bimnp = himnp = rentnp = propnp = 1;
+            //Number of set, each set has 20 pages
+            int bimns, himns, rentns, propns;
+            bimns = himns = rentns = propns = 1;
 
             List<hims2> hvm2 = new List<hims2>();
             hvm2 = (from bim in dbHim.hims2
@@ -304,11 +356,17 @@ namespace TestApp.Controllers
             string abbv4 = StSuffAbbv[SSInt][3];
             //Number of records on a page;
             int pageSize = 10;
+            int setSize = 20;//number of page displayed each set
             int bimcount, himcount, rentcount, propcount;
+            // Number of record
             bimcount = himcount = rentcount = propcount = 0;
-            //Number of pages
+
+            //Number of page
             int bimnp, himnp, rentnp, propnp;
             bimnp = himnp = rentnp = propnp = 1;
+            //Number of set, each set has 20 pages
+            int bimns, himns, rentns, propns;
+            bimns = himns = rentns = propns = 1;
 
             List<rent2> rvm2 = new List<rent2>();
             rvm2 = (from bim in dbRent.rent2
@@ -352,11 +410,17 @@ namespace TestApp.Controllers
             string abbv4 = StSuffAbbv[SSInt][3];
             //Number of records on a page;
             int pageSize = 10;
+            int setSize = 20;//number of page displayed each set
             int bimcount, himcount, rentcount, propcount;
+            // Number of record
             bimcount = himcount = rentcount = propcount = 0;
-            //Number of pages
+
+            //Number of page
             int bimnp, himnp, rentnp, propnp;
             bimnp = himnp = rentnp = propnp = 1;
+            //Number of set, each set has 20 pages
+            int bimns, himns, rentns, propns;
+            bimns = himns = rentns = propns = 1;
 
             List<prop_site_address2> pvm2 = new List<prop_site_address2>();
             pvm2 = (from bim in dbProp.prop_site_address2

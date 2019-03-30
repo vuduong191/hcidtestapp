@@ -24,27 +24,54 @@
         <br />
         <div id="searchblock">
             <form class="searchform" method="get">
-                <label>Street Number</label>
-                <input type="text" class="form-control" id="StreetNumber" name="StreetNumber">
-                <label>Street Name</label>
-                <input type="text" class="form-control" id="StreetName" name="StreetName">
-                <label>Street Direction</label>
-                @Html.DropDownList("StreetDirection", (IEnumerable<SelectListItem>)ViewBag.StreetDirection, new { @class = "form-control" })
-                <label>Street Suffix Name</label>
-                @Html.DropDownList("StreetSuffix", (IEnumerable<SelectListItem>)ViewBag.StreetSuffix, new { @class = "form-control" })
-
-                <label>City</label>
-                <input type="text" class="form-control" id="City" name="City">
-                <label>Zip Code</label>
-                <input type="text" class="form-control" id="Zip" name="Zip">
-                <label>APN</label>
-                <input type="text" class="form-control" id="APN" name="APN">
+                <div class="row input-row">
+                    <div class="col-md-4">
+                        <label>Street Number</label>
+                        <input type="text" class="form-control" id="StreetNumber" name="StreetNumber">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Street Name</label>
+                        <input type="text" class="form-control" id="StreetName" name="StreetName">
+                    </div>
+                    <div class="col-md-3">
+                        <label>City</label>
+                        <input type="text" class="form-control" id="City" name="City">
+                    </div>
+                </div>
+                <div class="row input-row">
+                    <div class="col-md-4">
+                        <label>Street Direction</label>
+                        @Html.DropDownList("StreetDirection", (IEnumerable<SelectListItem>)ViewBag.StreetDirection, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Street Suffix Name</label>
+                        @Html.DropDownList("StreetSuffix", (IEnumerable<SelectListItem>)ViewBag.StreetSuffix, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Zip Code</label>
+                        <input type="text" class="form-control" id="Zip" name="Zip">
+                    </div>
+                </div>
+                <div class="row input-row">
+                    <div class="col-md-12">
+                        <label>APN</label>
+                        <input type="text" class="form-control" id="APN" name="APN">
+                    </div>
+                </div>
                 <br />
                 <label>Choose Database(s)</label> <br />
-                <input class="form-check-input" id="bimcheckbox" type="checkbox" name="bims2"> Bims2<br>
-                <input class="form-check-input" id="rentcheckbox" type="checkbox" name="rent2"> Rent2<br>
-                <input class="form-check-input" id="himcheckbox" type="checkbox" name="hims2"> Hims2<br>
-                <input class="form-check-input" id="propcheckbox" type="checkbox" name="prop_site_address2"> Prop Site Addresss<br>
+                <div class="checkbox">
+                    <input id="bimcheckbox" type="checkbox" name="bims2"> <label for="bimcheckbox">Bims2</label>
+                </div>
+                <div class="checkbox">
+                    <input id="himcheckbox" type="checkbox" name="hims2"> <label for="himcheckbox">Hims2</label> 
+                </div>
+                <div class="checkbox">
+                    <input id="rentcheckbox" type="checkbox" name="rent2"> <label for="rentcheckbox">Rent2</label> 
+                </div>
+                <div class="checkbox">
+                    <input class="form-check-input" id="propcheckbox" type="checkbox" name="prop_site_address2"> <label for="propcheckbox"">Prop Site Addresss</label> 
+                </div>
                 <input type="submit" class="btn btn-search" id="SearchBtn" value="Search">
             </form>
         </div>
@@ -139,7 +166,7 @@
                                 if (i == result.CurrentPageBim) {
                                     tfootcontent = tfootcontent + i + "  ";
                                 } else {
-                                    tfootcontent = tfootcontent + "<a class='bim-page-number' href='#'>" + i + "  </a>";
+                                    tfootcontent = tfootcontent + "<a class='bim-page-number bimpage' pageorset='page' href='#'>" + i + "  </a>";
                                 }
                             };
                             let bimtfoot = $("<tfoot>").append("<tr><td colspan=11 id='storedcurrentsearch' " +
@@ -149,8 +176,13 @@
                                 "data-StreetSuffix='" + streetSuffix + "' " +
                                 "data-City='" + city + "' " +
                                 "data-Zip='" + zip + "' " +
+                                "data-PageSize='" + result.PageSize + "' " +
+                                "data-SetSize='" + result.SetSize + "' " +
                                 "data-APN='" + apn + "' " +
                                 "data-NoofPage='" + result.NoofPageBim + "' " +
+                                "data-NoofSet='" + result.NoofSetBim + "' " +
+                                "data-CurrentSet='" + result.CurrentSetBim + "' " +
+                                "data-CurrentPage='" + result.CurrentPageBim + "' " +
                                 "data-NoofRecord='" + result.CountBim + "'>" +
                                 "<p id='bim-tfoot'>" + tfootcontent +
                                 "</p></td ></tr > ");
@@ -158,7 +190,15 @@
                             bimthead.append(bimtfoot);
                             bimtable.append(tableTitle);
                             bimtable.append(bimthead);
-                            bimtable.append("<p>" + result.CountBim + " records found. Maximum 200 records displayed</p>");
+                            let backwardpossible = parseInt(result.CurrentSetBim) == 1;
+                            let backwardbutton = $("<button>", { id: "bim-backbutt", type: "button", class: "btn pagesetbutt btn-lg btn-primary bimpage", pageorset: 'set', movedirection:'back', disabled: backwardpossible });
+                            backwardbutton.html("Back 20 Pages");
+                            let forwardpossible = result.CurrentSetBim == result.NoofSetBim;
+                            let forwardbutton = $("<button>", { id: "bim-forbutt", type: "button", class: "btn pagesetbutt btn-lg btn-primary bimpage", pageorset: 'set', movedirection: 'next', disabled: forwardpossible });
+                            forwardbutton.html("Next 20 Pages");
+                            bimtable.append(backwardbutton);
+                            bimtable.append(forwardbutton);
+                            bimtable.append("<p>" + result.CountBim + " records found.</p>");
                         } else {
                             var tableTitle = "<h2 class='tableTitle'> Bims2 Data not</h2>";
                             var tableCcontent = "<p>No record found</p>";
@@ -382,25 +422,42 @@
             })
         });
         //page clicked on bim table
-        $(document).on('click', "a.bim-page-number", function (e) {
+        $(document).on('click', ".bimpage", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            var streetNumber = $("#storedcurrentsearch").data("streetnumber") ? $("#storedcurrentsearch").data("streetnumber"):"";
-            var streetName = $("#storedcurrentsearch").data("streetname") ? $("#storedcurrentsearch").data("StreetName"):"";
-            var streetDirection = $("#storedcurrentsearch").data("streetdirection") ? $("#storedcurrentsearch").data("streetdirection"):"";
-            var streetSuffix = $("#storedcurrentsearch").data("streetsuffix") ? $("#storedcurrentsearch").data("streetsuffix"):"0";
-            var city = $("#storedcurrentsearch").data("city") ? $("#storedcurrentsearch").data("city"):"";
-            var zip = $("#storedcurrentsearch").data("zip") ? $("#storedcurrentsearch").data("zip"):"";
-            var apn = $("#storedcurrentsearch").data("apn") ? $("#storedcurrentsearch").data("apn"):"";
-            var pageNum = parseInt($(this).html().trim());
-            var noofPage = $("#storedcurrentsearch").data("noofpage") ? $("#storedcurrentsearch").data("noofpage"):"";
+            var currentSet = parseInt($("#storedcurrentsearch").attr("data-currentset"));
+            console.log("currentset from html: " + currentSet)
+            let noofSet = $("#storedcurrentsearch").data("noofset");
+            let setSize = $("#storedcurrentsearch").data("setsize");
+            let pageNum;
+            let pageorset = $(this).attr('pageorset');
+            if (pageorset == 'page') {
+                pageNum = parseInt($(this).html().trim());
+            } else {
+                if ($(this).attr('movedirection') == 'back') {
+                    currentSet -= 1;
+                } else {
+                    currentSet += 1;
+                };
+                console.log("currentset after click: "+currentSet)
+                pageNum = (currentSet-1) * setSize + 1;
+            };
+            let streetNumber = $("#storedcurrentsearch").data("streetnumber") ? $("#storedcurrentsearch").data("streetnumber"):"";
+            let streetName = $("#storedcurrentsearch").data("streetname") ? $("#storedcurrentsearch").data("StreetName"):"";
+            let streetDirection = $("#storedcurrentsearch").data("streetdirection") ? $("#storedcurrentsearch").data("streetdirection"):"";
+            let streetSuffix = $("#storedcurrentsearch").data("streetsuffix") ? $("#storedcurrentsearch").data("streetsuffix"):"0";
+            let city = $("#storedcurrentsearch").data("city") ? $("#storedcurrentsearch").data("city"):"";
+            let zip = $("#storedcurrentsearch").data("zip") ? $("#storedcurrentsearch").data("zip"):"";
+            let apn = $("#storedcurrentsearch").data("apn") ? $("#storedcurrentsearch").data("apn") : "";
+            let noofPage = $("#storedcurrentsearch").data("noofpage");
             $.ajax({
                 type: "GET",
-                url: "/Home/GetBimSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&NoofPage=" + noofPage,
+                url: "/Home/GetBimSearchResult?StreetNumber=" + streetNumber + "&StreetName=" + streetName + "&StreetDirection=" + streetDirection + "&StreetSuffix=" + streetSuffix + "&City=" + city + "&Zip=" + zip + "&APN=" + apn + "&PageNum=" + pageNum + "&CurrentSet=" +  currentSet,
                 contentType: "html",
                 success: function (result) {
                     let bimresult = result.DataBim;
-                    console.log(bimresult);
+                    console.log("URL logged: " + this.url);
+                    $("#storedcurrentsearch").attr("data-currentset", result.CurrentSetBim)
                     $("#bim-tbody").html("");
                     $.each(bimresult, function (index, value) {
                         var bimtbodydata = "<tr>" +
@@ -416,16 +473,22 @@
                             "</tr>";
                         $("#bim-tbody").append(bimtbodydata)
                     })
+                    console.log("CurrentSetBim: " + result.CurrentSetBim)
+                    console.log("CurrentPageBim: " + result.CurrentPageBim)
                     $("#bim-tfoot").html("");
                     let tfootcontent = "";
-                    for (let i = 1; i <= Math.min(result.NoofPageBim, 20); i++) {
+                    for (let i = (parseInt(result.CurrentSetBim) - 1) * setSize + 1; i <= Math.min(noofPage, (parseInt(result.CurrentSetBim) - 1) * setSize + 20); i++) {
                         if (i == result.CurrentPageBim) {
                             tfootcontent = tfootcontent + i + "  ";
                         } else {
-                            tfootcontent = tfootcontent + "<a class='bim-page-number' href='javascript:void();'>" + i + "  </a>";
+                            tfootcontent = tfootcontent + "<a class='bim-page-number bimpage' pageorset='page' href='javascript:void();'>" + i + "  </a>";
                         }
                     };
                     $("#bim-tfoot").append(tfootcontent);
+                    let backwardpossible = parseInt(result.CurrentSetBim) == 1;
+                    $("#bim-backbutt").attr("disabled", backwardpossible);
+                    let forwardpossible = result.CurrentSetBim == noofSet;
+                    $("#bim-forbutt").attr("disabled", forwardpossible);
                 }
             });
         }); //end of Bim
