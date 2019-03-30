@@ -280,7 +280,7 @@ namespace TestApp.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         //Get paged data from him table
-        public JsonResult GetHimSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        public JsonResult GetHimSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string CurrentSet)
         {
             // prepare a list of variants of street type
             Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
@@ -330,12 +330,12 @@ namespace TestApp.Controllers
             {
                 DataHim = hvm2,
                 CurrentPageHim = PageNum,
-                NoofPageHim = NoofPage
+                CurrentSetHim = CurrentSet
             };
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         //Get paged data from rent table
-        public JsonResult GetRentSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        public JsonResult GetRentSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string CurrentSet)
         {
             // prepare a list of variants of street type
             Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
@@ -384,12 +384,12 @@ namespace TestApp.Controllers
             {
                 DataRent = rvm2,
                 CurrentPageRent = PageNum,
-                NoofPageRent = NoofPage
+                CurrentSetRent = CurrentSet
             };
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         //Get paged data from Prop table
-        public JsonResult GetPropSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string NoofPage)
+        public JsonResult GetPropSearchResult(string StreetNumber, string StreetName, string StreetDirection, string StreetSuffix, string City, string Zip, string APN, string PageNum, string CurrentSet)
         {
             // prepare a list of variants of street type
             Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
@@ -440,7 +440,7 @@ namespace TestApp.Controllers
             {
                 DataProp = pvm2,
                 CurrentPageProp = PageNum,
-                NoofPageProp = NoofPage
+                CurrentSetProp = CurrentSet
             };
             return Json(data, JsonRequestBehavior.AllowGet);
         }

@@ -220,6 +220,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custstyle.css" />
+    <Content Include="Content\images\bg_jumbo.jpg" />
+    <Content Include="Content\images\hr-11.png" />
+    <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
     <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
