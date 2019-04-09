@@ -22,10 +22,10 @@ namespace TestApp.Controllers
             // input for options in forms in views
             List<SelectListItem> stdirs = new List<SelectListItem>();
             stdirs.Add(new SelectListItem { Text = "Anything or others", Value = "" });
-            stdirs.Add(new SelectListItem { Text = "East", Value = "e" });
-            stdirs.Add(new SelectListItem { Text = "West", Value = "w" });
-            stdirs.Add(new SelectListItem { Text = "North", Value = "n", Selected = true });
-            stdirs.Add(new SelectListItem { Text = "South", Value = "s" });
+            stdirs.Add(new SelectListItem { Text = "East", Value = " e" });
+            stdirs.Add(new SelectListItem { Text = "West", Value = " w" });
+            stdirs.Add(new SelectListItem { Text = "North", Value = " n", Selected = true });
+            stdirs.Add(new SelectListItem { Text = "South", Value = " s" });
             ViewBag.StreetDirection = stdirs;
             List<SelectListItem> stsuff = new List<SelectListItem>();
             stsuff.Add(new SelectListItem { Text = "Anything or others", Value = "0" });
@@ -46,15 +46,15 @@ namespace TestApp.Controllers
             // prepare a list of variants of street type
             Dictionary<int, List<string>> StSuffAbbv = new Dictionary<int, List<string>>();
             StSuffAbbv.Add(0, new List<string> { "", "", "", "" });
-            StSuffAbbv.Add(1, new List<string> { "st", "st", "st", "st" });
-            StSuffAbbv.Add(2, new List<string> { "av", "av", "av", "av" });
-            StSuffAbbv.Add(3, new List<string> { "blvd", "boul", "boul", "boul" });
-            StSuffAbbv.Add(4, new List<string> { "high", "hwy", "hiwy", "way" });
-            StSuffAbbv.Add(5, new List<string> { "dr", "dr", "dr", "dr" });
-            StSuffAbbv.Add(6, new List<string> { "pl", "pl", "pl", "pl" });
-            StSuffAbbv.Add(7, new List<string> { "lane", "ln", "ln", "ln" });
-            StSuffAbbv.Add(8, new List<string> { "route", "rte", "rte", "rte" });
-            StSuffAbbv.Add(9, new List<string> { "way", "wy", "wy", "wy" });
+            StSuffAbbv.Add(1, new List<string> { " st", " st", " st", " st" });
+            StSuffAbbv.Add(2, new List<string> { " av", " av", " av", " av" });
+            StSuffAbbv.Add(3, new List<string> { " blvd", " boul", " boul", " boul" });
+            StSuffAbbv.Add(4, new List<string> { " high", " hwy", " hiwy", " way" });
+            StSuffAbbv.Add(5, new List<string> { " dr", " dr", " dr", " dr" });
+            StSuffAbbv.Add(6, new List<string> { " pl", " pl", " pl", " pl" });
+            StSuffAbbv.Add(7, new List<string> { " lane", " ln", " ln", " ln" });
+            StSuffAbbv.Add(8, new List<string> { " route", " rte", " rte", " rte" });
+            StSuffAbbv.Add(9, new List<string> { " way", " wy", " wy", " wy" });
             //StreetSuffix has value of null when the page is first loaded. This causes the following code line to mess up.
             StreetSuffix = StreetSuffix == null ? "0" : StreetSuffix;
             int SSInt = int.Parse(StreetSuffix);
